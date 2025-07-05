@@ -15,7 +15,7 @@ menu:
   ##   If enabled, mods in this list will not receive menus nor commands.
   ##   Otherwise, mods in this list will be the only ones to receive menus & commands.
   ##   Mods that use the Simple Config API always have menus & commands
-  ## [Requires Restart!] [List: [Suggestions: "betterdungeons", "fcquark", "openpartiesandclaims", "connectorextras_kubejs_bridge", "integratedterminals", "integratedterminalscompat", "fabric_rendering_fluids_v1", "majruszsdifficulty", "fabric_models_v0", "critter_lib", "not_interested", "apothiccombat", "modernfix", "fabric_command_api_v1", "fabric_block_view_api_v2", "fabric_command_api_v2", ... (omitted 525 more)]]
+  ## [Requires Restart!] [List: [Suggestions: "betterdungeons", "fcquark", "openpartiesandclaims", "connectorextras_kubejs_bridge", "integratedterminals", "integratedterminalscompat", "fabric_rendering_fluids_v1", "majruszsdifficulty", "fabric_models_v0", "critter_lib", "not_interested", "apothiccombat", "modernfix", "fabric_command_api_v1", "fabric_block_view_api_v2", "fabric_command_api_v2", ... (omitted 533 more)]]
   wrap_config_exceptions: []
   ## Replace Config Menus
   ##   Replace configuration menus of mods that already had one.
@@ -26,7 +26,7 @@ menu:
   ##   Exceptions to the above setting
   ##   If enabled, mods in this list won't have their menus replaced
   ##   Otherwise, the mods in this list will be the only replaced ones.
-  ## [Requires Restart!] [List: [Suggestions: "betterdungeons", "fcquark", "openpartiesandclaims", "connectorextras_kubejs_bridge", "integratedterminals", "integratedterminalscompat", "fabric_rendering_fluids_v1", "majruszsdifficulty", "fabric_models_v0", "critter_lib", "not_interested", "apothiccombat", "modernfix", "fabric_command_api_v1", "fabric_block_view_api_v2", "fabric_command_api_v2", ... (omitted 525 more)]]
+  ## [Requires Restart!] [List: [Suggestions: "betterdungeons", "fcquark", "openpartiesandclaims", "connectorextras_kubejs_bridge", "integratedterminals", "integratedterminalscompat", "fabric_rendering_fluids_v1", "majruszsdifficulty", "fabric_models_v0", "critter_lib", "not_interested", "apothiccombat", "modernfix", "fabric_command_api_v1", "fabric_block_view_api_v2", "fabric_command_api_v2", ... (omitted 533 more)]]
   replace_menu_exceptions: []
   ## Wrap Top Groups as Tabs
   ##   Wraps top level groups in other mods' configs as tabs rather than normal groups.

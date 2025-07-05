@@ -1,4 +1,6 @@
 ServerEvents.recipes((event) => {
+  if (!Platform.isLoaded('heroes')) return;
+
   event.remove({ output: 'heroes:compound_alx' });
 
   if (Platform.isLoaded('powah')) {
@@ -59,7 +61,6 @@ ServerEvents.recipes((event) => {
   }
 
   event.remove({ output: 'heroes:formula_vial' });
-
   if (Platform.isLoaded('hexerei')) {
     const fluid = Platform.isLoaded('create_enchantment_industry')
       ? 'create_enchantment_industry:experience'
@@ -127,7 +128,6 @@ ServerEvents.recipes((event) => {
   }
 
   event.remove({ output: 'heroes:catalyst_vial' });
-
   event
     .custom({
       type: 'bloodmagic:alchemytable',

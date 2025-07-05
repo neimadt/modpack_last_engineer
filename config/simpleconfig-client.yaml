@@ -236,7 +236,7 @@ hotkeys:
   edit_config_hotkeys: right.alt>"h">
   ## Edit Mod Config
   ##   Add keybinds to open directly the config menu of specific mods.
-  ## [Map: [Hotkey: !key+"char"+mouse.left!>:press#game] >> [Suggestions: "betterdungeons", "fcquark", "openpartiesandclaims", "connectorextras_kubejs_bridge", "integratedterminals", "integratedterminalscompat", "fabric_rendering_fluids_v1", "majruszsdifficulty", "fabric_models_v0", "critter_lib", "not_interested", "apothiccombat", "modernfix", "fabric_command_api_v1", "fabric_block_view_api_v2", "fabric_command_api_v2", ... (omitted 525 more)]]
+  ## [Map: [Hotkey: !key+"char"+mouse.left!>:press#game] >> [Suggestions: "betterdungeons", "fcquark", "openpartiesandclaims", "connectorextras_kubejs_bridge", "integratedterminals", "integratedterminalscompat", "fabric_rendering_fluids_v1", "majruszsdifficulty", "fabric_models_v0", "critter_lib", "not_interested", "apothiccombat", "modernfix", "fabric_command_api_v1", "fabric_block_view_api_v2", "fabric_command_api_v2", ... (omitted 533 more)]]
   mod_config_hotkeys: {}
 
 ## Demo
@@ -635,7 +635,7 @@ demo:
     ## Tagged bool
     ##   Entries may be tagged with many different tags.
     ##   Mods may even create their own.
-    ## [Yellow bookmark] [Advanced!] [Green tag] [Blue tag] [Red tag] [Requires Restart!] [EXPERIMENTAL!] [true/false]
+    ## [Green tag] [Advanced!] [Blue tag] [Red tag] [Yellow bookmark] [Requires Restart!] [EXPERIMENTAL!] [true/false]
     mixed_bool: false
     ## Enable Switch
     ##   This entry can disable the one below it
