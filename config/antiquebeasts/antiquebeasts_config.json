@@ -1,0 +1,5 @@
+{
+  "patrolSpawning": true,
+  "patrolSpawnDelay": 45,
+  "enableDifficultySystem": true
+}

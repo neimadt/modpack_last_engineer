@@ -41,7 +41,8 @@ screenshots/
 shaderpacks/
 xaero*/
 .curseclient
-*.json
+/*.json
+!/manifest.json
 replay_*
 
 # Configs you probably want to ignore
