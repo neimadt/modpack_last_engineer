@@ -1,0 +1,55 @@
+# Minecraft runtime files
+logs/
+crash-reports/
+debug.log
+latest.log
+
+# Local player settings
+options.txt
+usercache.json
+usernamecache.json
+servers.dat
+
+# Big files
+
+# Saves
+saves/
+
+# IDE/editor stuff
+.idea/
+.vscode/
+*.iml
+
+# Misc
+.mixin.out/
+addonpacks/
+blueprints/
+data/
+datapacks/
+downloads/
+ESM/
+local/
+mod_data/
+moddata/
+modernfix/
+mods/
+ntgl/
+patchouli_books/
+resourcepacks/
+schematics/
+screenshots/
+shaderpacks/
+xaero*/
+.curseclient
+*.json
+replay_*
+
+# Configs you probably want to ignore
+config/fml.toml
+config/forge-client.toml
+config/forge-server.toml
+serverconfig/
+
+# OS files
+.DS_Store
+Thumbs.db
