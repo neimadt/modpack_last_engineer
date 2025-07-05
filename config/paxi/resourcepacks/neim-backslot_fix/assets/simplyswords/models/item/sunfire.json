@@ -1,0 +1,14 @@
+{
+    "parent": "simplyswords:item/template_longsword",
+    "textures": {
+		"layer1": "simplyswords:item/unique_longsword_holy_layer_32x32",
+		"layer0": "simplyswords:item/unique_longsword_holy"
+    },
+    "display": {
+        "head": {
+			"rotation": [ 0, 180, 0 ],
+			"translation": [ 0, 12, 7],
+			"scale":[ 1.55, 1.55, 1.0 ]
+		}
+    }
+}

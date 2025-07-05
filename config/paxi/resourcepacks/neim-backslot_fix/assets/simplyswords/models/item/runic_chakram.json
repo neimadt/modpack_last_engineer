@@ -1,0 +1,14 @@
+{
+	"parent": "simplyswords:item/template_chakram",
+	"textures": {
+		"layer0": "simplyswords:item/runic_chakram",
+		"layer1": "simplyswords:item/runic_chakram_layer"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 90, 0, 90 ],
+			"translation": [ -7.8, 8.5, 5],
+			"scale":[ 0.6, 0.6, 1.0 ]
+		}
+    }
+}

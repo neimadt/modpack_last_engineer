@@ -1,0 +1,1354 @@
+{
+    "name": "[Augmented Movement Potential]",
+    "background": "minecraft:textures/block/tinted_glass.png",
+    "icon": "heroes:textures/gui/dna_icon.png",
+    "ability_bar_texture": "heroes:textures/gui/ability_bars/powers.png",
+    "persistent_data": true,
+    "abilities": {
+        "Speed_Loop": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [
+                "scoreboard objectives add Heroes.Speed dummy",
+                "scoreboard objectives add Heroes.Speed.WallRun dummy",
+                "scoreboard objectives add Heroes.Speed.Max dummy",
+                "execute unless score @s Heroes.Speed.Max matches 1.. run scoreboard players set @s Heroes.Speed.Max 40",
+                "scoreboard objectives add Heroes.Speed.Dodge dummy",
+                "scoreboard objectives add Heroes.Speed.Damage dummy",
+                "scoreboard objectives add Heroes.Speed.Id dummy",
+                "scoreboard objectives add Heroes.Speed.WallRun dummy",
+                "scoreboard objectives add Heroes.Speed.WallRun.Anim dummy",
+                "scoreboard objectives add Heroes.Toggle.Speed dummy",
+                "scoreboard objectives add Heroes.Speed.Stat dummy",
+                "execute unless score @s Heroes.Toggle.Speed matches 0.. run scoreboard players set @s Heroes.Toggle.Speed 0"
+            ],
+            "last_tick_commands": [
+                "attribute @s minecraft:generic.movement_speed modifier remove 39d79b6c-c9ce-11ed-afa1-0242ac120002",
+                "attribute @s minecraft:generic.attack_damage modifier remove bba8d59a-12ec-11ee-be56-0242ac120002"
+            ],
+            "commands": [
+                "scoreboard players remove @s[scores={Heroes.Space_Time_Manipulation.Spatial.Timer=1..}] Heroes.Space_Time_Manipulation.Spatial.Timer 1",
+                "execute unless entity @s[scores={Powers.Augmented_Movement_Potential=1..}] unless entity @s[scores={Powers.Fake.Augmented_Movement_Potential=1..}] run superpower remove heroes:augmented_movement_potential",
+                "execute store result score @s Heroes.Speed.Damage run attribute @s minecraft:generic.attack_damage get",
+                "execute as @s if score @s Heroes.Speed >= @s Heroes.Speed.Max run scoreboard players operation @s Heroes.Speed = @s Heroes.Speed.Max"
+            ]
+        },
+        "genetic_marker": {
+            "type": "palladium:dummy",
+            "title": "Genetic Marker",
+            "icon": "heroes:textures/gui/dna_icon.png",
+            "gui_position": [
+                0,
+                0
+            ],
+            "description": {
+                "text": "Through either natural or artificial means, you've obtained an ability that others would deem impossible. Be careful, as those who thirst for power may seek out what you now possess."
+            },
+            "list_index": -1,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Powers.Suppresed",
+                                "min_score": 1,
+                                "max_score": 10000000
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:has_tag",
+                        "tag": "Heroes.Enabled"
+                    }
+                ]
+            }
+        },
+        "Toggle_Ability_Bar": {
+            "type": "palladium:command",
+            "hidden": false,
+            "commands": [
+                "scoreboard players add @s Heroes.Toggle.Speed 1",
+                "scoreboard players set @s[scores={Heroes.Toggle.Speed=2..}] Heroes.Toggle.Speed 0",
+                "ability lock @s heroes:augmented_movement_potential Toggle_Ability_Bar"
+            ],
+            "icon": "heroes:textures/gui/ability_menu.png",
+            "title": "Toggle Ability Bar",
+            "description": "Toggles off the ability bar for this power but keeps passives enabled.",
+            "gui_position": [
+                0,
+                1
+            ],
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "Powers.Suppresed",
+                        "score": 0,
+                        "icon": "heroes:textures/gui/ability_menu.png",
+                        "description": {
+                            "text": "Toggle On/Off"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Ability_Bar_Visible": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Toggle.Speed",
+                        "min_score": 0,
+                        "max_score": 0
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Toggle.Bars",
+                        "min_score": 0,
+                        "max_score": 0
+                    }
+                ]
+            }
+        },
+        "Speed_Stat": {
+            "type": "heroes:stat_ability",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "score_value": "Heroes.Speed",
+            "Division_Amount": "100",
+            "Attribute_Type": "minecraft:generic.movement_speed",
+            "UUID": "39d79b6c-c9ce-11ed-afa1-0242ac120002",
+            "Attribute_Id": "Speed",
+            "Attribute_Modifier": "add",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed",
+                        "min_score": 1,
+                        "max_score": 2147483647
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Heroes.Space_Time_Manipulation.Spatial.Timer",
+                                "min_score": 1,
+                                "max_score": 2147483647
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Speed_Swimming": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "forge:swim_speed",
+            "uuid": "0f606870-88bc-11ee-b9d1-0242ac120002",
+            "amount": 2,
+            "operation": 1,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed",
+                        "min_score": 1,
+                        "max_score": 2147483647
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Heroes.Space_Time_Manipulation.Spatial.Timer",
+                                "min_score": 1,
+                                "max_score": 2147483647
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Step_Assist": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "forge:step_height_addition",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "842e9b74-88ab-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Stat"
+                    }
+                ]
+            }
+        },
+        "Fall_Ress": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 3,
+            "operation": 0,
+            "uuid": "fb458c94-88b6-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Stat"
+                    }
+                ]
+            }
+        },
+        "Speed_Stat_get": {
+            "type": "palladium:command",
+            "commands": [
+                "execute store result score @s Heroes.Speed.Stat run attribute @s minecraft:generic.movement_speed get 100"
+            ],
+            "bar_color": "black",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Stat"
+                    }
+                ]
+            }
+        },
+        "Speed_Stat_Remove": {
+            "type": "palladium:command",
+            "first_tick_commands": [
+                "attribute @s minecraft:generic.movement_speed modifier remove 39d79b6c-c9ce-11ed-afa1-0242ac120002"
+            ],
+            "last_tick_commands": [
+                "attribute @s minecraft:generic.movement_speed modifier remove 39d79b6c-c9ce-11ed-afa1-0242ac120002"
+            ],
+            "commands": [
+                ""
+            ],
+            "bar_color": "black",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "Speed_Stat_get"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Speed_Swimming_Remove": {
+            "type": "palladium:command",
+            "first_tick_commands": [
+                "attribute @s forge:swim_speed modifier remove 0f606870-88bc-11ee-b9d1-0242ac120002"
+            ],
+            "last_tick_commands": [
+                "attribute @s forge:swim_speed modifier remove 0f606870-88bc-11ee-b9d1-0242ac120002"
+            ],
+            "commands": [
+                ""
+            ],
+            "bar_color": "black",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "Speed_Swimming"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Speed_Str_Stat": {
+            "type": "heroes:stat_ability",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "score_value": "Heroes.Speed",
+            "Division_Amount": "20",
+            "Attribute_Type": "minecraft:generic.attack_damage",
+            "UUID": "bba8d59a-12ec-11ee-be56-0242ac120002",
+            "Attribute_Id": "Speed_Str",
+            "Attribute_Modifier": "add",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Stat",
+                        "min_score": 70,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:sprinting"
+                    }
+                ]
+            }
+        },
+        "Speed_Str_Stat_Remove": {
+            "type": "palladium:command",
+            "commands": [
+                "attribute @s minecraft:generic.attack_damage modifier remove bba8d59a-12ec-11ee-be56-0242ac120002"
+            ],
+            "hidden": true,
+            "hidden_in_bar": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "Speed_Str_Stat"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Speed Up": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_up.png",
+            "gui_position": [
+                -1,
+                0
+            ],
+            "title": "Speed Increase",
+            "bar_color": "green",
+            "list_index": 0,
+            "commands": [
+                "scoreboard players operation @s[predicate=heroes:is_sneaking] Heroes.Speed = @s Heroes.Speed.Max",
+                "scoreboard players add @s[predicate=!heroes:is_sneaking] Heroes.Speed 1"
+            ],
+            "description": "Increase Speed.",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 0,
+                        "key_type": "key_bind"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Speed Down": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_down.png",
+            "gui_position": [
+                1,
+                0
+            ],
+            "title": "Speed Decrease",
+            "bar_color": "red",
+            "list_index": 1,
+            "commands": [
+                "scoreboard players set @s[predicate=heroes:is_sneaking,scores={Heroes.Speed=1..}] Heroes.Speed 0",
+                "scoreboard players remove @s[predicate=!heroes:is_sneaking,scores={Heroes.Speed=1..}] Heroes.Speed 3",
+                "scoreboard players set @s[scores={Heroes.Speed=..0}] Heroes.Speed 0"
+            ],
+            "description": "Decrease Speed.",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 0,
+                        "key_type": "key_bind"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Max_Speed_Lvl_1": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_lvl_1.png",
+            "gui_position": [
+                0,
+                -1
+            ],
+            "title": "Max Speed Level 1",
+            "commands": [],
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Speed.Max 40"
+            ],
+            "description": "Max Speed Lvl 1.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Max_Speed_Lvl_2": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_lvl_2.png",
+            "gui_position": [
+                0.5,
+                -1.5
+            ],
+            "title": "Max Speed Level 2",
+            "commands": [],
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Speed.Max 65"
+            ],
+            "description": "Max Speed Lvl 2.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 20
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_1"
+                    }
+                ]
+            }
+        },
+        "Max_Speed_Lvl_3": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_lvl_3.png",
+            "gui_position": [
+                0,
+                -2
+            ],
+            "title": "Max Speed Level 3",
+            "commands": [],
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Speed.Max 80"
+            ],
+            "description": "Max Speed Lvl 3.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 25
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_2"
+                    }
+                ]
+            }
+        },
+        "Max_Speed_Lvl_4": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_lvl_4.png",
+            "gui_position": [
+                -0.5,
+                -2.5
+            ],
+            "title": "Max Speed Level 4",
+            "commands": [],
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Speed.Max 95"
+            ],
+            "description": "Max Speed Lvl 4.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 30
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_3"
+                    }
+                ]
+            }
+        },
+        "Max_Speed_Lvl_5": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_lvl_5.png",
+            "gui_position": [
+                0,
+                -3
+            ],
+            "title": "Max Speed Level 5",
+            "commands": [],
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Speed.Max 110"
+            ],
+            "description": "Max Speed Lvl 5.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 35
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_4"
+                    }
+                ]
+            }
+        },
+        "Accelerated_Healing": {
+            "type": "palladium:healing",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "frequency": 120,
+            "amount": 2,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_1"
+                    }
+                ]
+            }
+        },
+        "Auto_Arrow_Pickup_Swing": {
+            "type": "palladium:projectile",
+            "hidden": true,
+            "entity_type": "palladium:custom_projectile",
+            "entity_data": {
+                "Gravity": 0.00,
+                "Size": 0,
+                "Lifetime": 1,
+                "DieOnEntityHit": false,
+                "DieOnBlockHit": false
+            },
+            "inaccuracy": 0,
+            "velocity": 0,
+            "swinging_arm": "main_arm",
+            "damage_from_player": false,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Heroes.Space_Time_Manipulation.Spatial.Timer",
+                                "min_score": 1,
+                                "max_score": 2147483647
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:command_result",
+                        "command": "execute anchored eyes positioned ^ ^ ^2.1 if entity @e[type=arrow,distance=..2]",
+                        "comparison": "==",
+                        "compare_to": 1,
+                        "log": false
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_1"
+                    },
+                    {
+                        "type": "palladium:empty_slot",
+                        "slot": "mainhand"
+                    }
+                ]
+            }
+        },
+        "Auto_Arrow_Pickup": {
+            "type": "palladium:command",
+            "hidden": true,
+            "last_tick_commands": [
+                ""
+            ],
+            "commands": [
+                "execute anchored eyes positioned ^ ^ ^2.1 as @e[type=arrow,distance=..2] run data modify entity @s inGround set value 1b",
+                "execute anchored eyes positioned ^ ^ ^2.1 as @e[type=arrow,distance=..2] run data modify entity @s pickup set value 1b",
+                "execute anchored eyes positioned ^ ^ ^2.1 as @e[type=arrow,distance=..2] run scoreboard players add @s Heroes.Stamina.Remove 1",
+                "execute anchored eyes positioned ^ ^ ^2.1 at @e[type=arrow,distance=..2] run tp @e[type=arrow,distance=..0.1] @s"
+            ],
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_1"
+                    },
+                    {
+                        "type": "palladium:empty_slot",
+                        "slot": "mainhand"
+                    }
+                ]
+            }
+        },
+        "Reflex_Dodge": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/speed_dodge.png",
+            "gui_position": [
+                -1,
+                -1.5
+            ],
+            "bar_color": "green",
+            "title": "Reflex Dodge",
+            "description": "Using your incredible speed you are able to dodge any attack.",
+            "list_index": 3,
+            "hidden": false,
+            "commands": [
+                "scoreboard players add @s Heroes.Concentration.Hold 1"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:toggle",
+                        "cooldown": 0,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Stamina",
+                        "min_score": 33,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Concentration.Usable",
+                        "min_score": 1,
+                        "max_score": 12
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Heroes.Space_Time_Manipulation.Spatial.Timer",
+                                "min_score": 1,
+                                "max_score": 2147483647
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_2"
+                    }
+                ]
+            }
+        },
+        "Reflex_Dodge_Anim": {
+            "type": "palladium:repeating_animation_timer",
+            "start_value": 0,
+            "max_value": 5,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:has_tag",
+                        "tag": "Heroes.Speed.Dodge"
+                    }
+                ]
+            }
+        },
+        "Reflex_Dodge_Type_1": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Reflex_Dodge_Anim"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Dodge",
+                        "min_score": 0,
+                        "max_score": 1
+                    }
+                ]
+            }
+        },
+        "Reflex_Dodge_Type_2": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Reflex_Dodge_Anim"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Dodge",
+                        "min_score": 2,
+                        "max_score": 2
+                    }
+                ]
+            }
+        },
+        "Reflex_Dodge_Anim_End": {
+            "type": "palladium:command",
+            "hidden": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Speed.Dodge 1",
+                "scoreboard players set @s[scores={Heroes.Speed.Dodge=3..}] Heroes.Speed.Dodge 1",
+                "tag @s remove Heroes.Speed.Dodge"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "Reflex_Dodge_Anim",
+                        "min": 5,
+                        "max": 5
+                    }
+                ]
+            }
+        },
+        "Speed_Barrage": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/barrage_punch.png",
+            "gui_position": [
+                1,
+                -1
+            ],
+            "bar_color": "green",
+            "title": "Speed Barrage",
+            "description": "Using your incredible speed you are able to punch extremly fast in quick succesion allowing you to deal high DPS.",
+            "list_index": 2,
+            "hidden": false,
+            "commands": [
+                "effect give @s minecraft:hunger 1 1 true",
+                "scoreboard players add @s Heroes.Concentration.Hold 1",
+                "playsound minecraft:entity.player.attack.strong master @a ~ ~ ~ 1 1.4"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 0,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Stamina",
+                        "min_score": 1,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Concentration.Usable",
+                        "min_score": 1,
+                        "max_score": 12
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Heroes.Space_Time_Manipulation.Spatial.Timer",
+                                "min_score": 1,
+                                "max_score": 2147483647
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_1"
+                    }
+                ]
+            }
+        },
+        "Speed_Barrage.Cost": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 1"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 0,
+                        "disabled_ticks": 5
+                    }
+                ]
+            }
+        },
+        "Barrage_Multi": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 0.5,
+            "operation": 1,
+            "uuid": "29806880-ed18-11ed-a05b-0242ac120003",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    }
+                ]
+            }
+        },
+        "Barrage_Anim": {
+            "type": "palladium:repeating_animation_timer",
+            "start_value": 1,
+            "max_value": 4,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    }
+                ]
+            }
+        },
+        "Barrage_1": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    },
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "Barrage_Anim",
+                        "min": 1,
+                        "max": 1
+                    }
+                ]
+            }
+        },
+        "Barrage_2": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    },
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "Barrage_Anim",
+                        "min": 2,
+                        "max": 2
+                    }
+                ]
+            }
+        },
+        "Barrage_3": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    },
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "Barrage_Anim",
+                        "min": 3,
+                        "max": 3
+                    }
+                ]
+            }
+        },
+        "Barrage_4": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    },
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "Barrage_Anim",
+                        "min": 4,
+                        "max": 4
+                    }
+                ]
+            }
+        },
+        "Barrage_Dam": {
+            "type": "palladium:projectile",
+            "hidden": true,
+            "entity_type": "palladium:custom_projectile",
+            "entity_data": {
+                "Damage": 2,
+                "Gravity": 0.00,
+                "Size": 1.2,
+                "Lifetime": 3,
+                "DieOnEntityHit": false,
+                "DieOnBlockHit": false
+            },
+            "inaccuracy": 0,
+            "velocity": 1,
+            "swinging_arm": "none",
+            "damage_from_player": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    }
+                ]
+            }
+        },
+        "Barrage_Hands": {
+            "type": "palladium:show_both_arms",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Barrage"
+                    }
+                ]
+            }
+        },
+        "Wall_Run_Abil": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/wall_run.png",
+            "title": "Wall Running",
+            "description": "Using your incredible speed you are able to run up walls defying gravity itself!",
+            "gui_position": [
+                1,
+                -2
+            ],
+            "hidden": false,
+            "commands": [
+                "scoreboard players set @s Heroes.Speed.WallRun 0",
+                "execute if entity @s[x_rotation=-90..-45,y_rotation=45..145] unless block ~-0.4 ~ ~ #heroes:climb_block run scoreboard players set @s Heroes.Speed.WallRun 1",
+                "execute if entity @s[x_rotation=-90..-45,y_rotation=-145..-45] unless block ~0.4 ~ ~ #heroes:climb_block run scoreboard players set @s Heroes.Speed.WallRun 2",
+                "execute if entity @s[x_rotation=-90..-45,y_rotation=-46..44] unless block ~ ~ ~0.4 #heroes:climb_block run scoreboard players set @s Heroes.Speed.WallRun 3",
+                "execute if entity @s[x_rotation=-90..-45,y_rotation=146..-144] unless block ~ ~ ~-0.4 #heroes:climb_block run scoreboard players set @s Heroes.Speed.WallRun 4",
+                "execute if entity @s[x_rotation=-90..-45,scores={Heroes.Speed.WallRun=1..}] if block ~ ~0.3 ~ #heroes:climb_block run scoreboard players add @s Heroes.Speed.WallRun.Anim 1",
+                "execute if entity @s[x_rotation=45..90,scores={Heroes.Speed.WallRun=1..}] if block ~ ~-0.3 ~ #heroes:climb_block run scoreboard players add @s Heroes.Speed.WallRun.Anim 1",
+                "scoreboard players set @s[scores={Heroes.Speed.WallRun.Anim=4..}] Heroes.Speed.WallRun.Anim -1",
+                "scoreboard players set @s[scores={Heroes.Speed.WallRun=..0}] Heroes.Speed.WallRun.Anim 0"
+            ],
+            "bar_color": "green",
+            "list_index": 4,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:toggle",
+                        "cooldown": 0,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Heroes.Space_Time_Manipulation.Spatial.Timer",
+                                "min_score": 1,
+                                "max_score": 2147483647
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Max_Speed_Lvl_3"
+                    }
+                ]
+            }
+        },
+        "Wall_Run_Abil_Speed": {
+            "type": "heroes:motion_abil",
+            "motion_scale": 1,
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Wall_Run_Abil"
+                    },
+                    {
+                        "type": "palladium:command_result",
+                        "command": "execute if entity @s[x_rotation=-90..-45,scores={Heroes.Speed.WallRun=1..}]",
+                        "comparison": "==",
+                        "compare_to": 1,
+                        "log": false
+                    }
+                ]
+            }
+        },
+        "Wall_Run": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.WallRun",
+                        "min_score": 1,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:on_ground"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Wall_Run_1": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.WallRun.Anim",
+                        "min_score": 1,
+                        "max_score": 1
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.WallRun",
+                        "min_score": 1,
+                        "max_score": 4
+                    }
+                ]
+            }
+        },
+        "Wall_Run_2": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.WallRun.Anim",
+                        "min_score": 2,
+                        "max_score": 2
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.WallRun",
+                        "min_score": 1,
+                        "max_score": 4
+                    }
+                ]
+            }
+        },
+        "Wall_Run_3": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.WallRun.Anim",
+                        "min_score": 3,
+                        "max_score": 3
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.WallRun",
+                        "min_score": 1,
+                        "max_score": 4
+                    }
+                ]
+            }
+        },
+        "Speed_Mine": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "palladium:destroy_speed",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "76ecd386-5bab-11ee-8c99-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed",
+                        "min_score": 1,
+                        "max_score": 1000000
+                    }
+                ]
+            }
+        },
+        "Water Run": {
+            "type": "palladium:water_walk",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Stat",
+                        "min_score": 80,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:in_water"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:sprinting"
+                    }
+                ]
+            }
+        },
+        "After_Image": {
+            "type": "palladium:trail",
+            "trail": "heroes:after_image",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "power": "heroes:stockpile",
+                                "ability": "FullBody_Stockpile"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Stat",
+                        "min_score": 25,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed",
+                        "min_score": 1,
+                        "max_score": 1000000
+                    }
+                ]
+            }
+        },
+        "Speed_Blur": {
+            "type": "palladium:trail",
+            "trail": "heroes:white_blur",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "power": "heroes:stockpile",
+                                "ability": "FullBody_Stockpile"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Stat",
+                        "min_score": 120,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed",
+                        "min_score": 1,
+                        "max_score": 1000000
+                    }
+                ]
+            }
+        },
+        "lighting": {
+            "type": "palladium:trail",
+            "trail": "heroes:lighting_trail",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "power": "heroes:stockpile",
+                        "ability": "FullBody_Stockpile"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Stat",
+                        "min_score": 25,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed",
+                        "min_score": 1,
+                        "max_score": 1000000
+                    }
+                ]
+            }
+        },
+        "Momentum Swing": {
+            "type": "palladium:projectile",
+            "hidden": true,
+            "entity_type": "palladium:custom_projectile",
+            "entity_data": {
+                "Gravity": 0.00,
+                "Size": 0,
+                "Lifetime": 1,
+                "DieOnEntityHit": false,
+                "DieOnBlockHit": false
+            },
+            "inaccuracy": 0,
+            "velocity": 0,
+            "swinging_arm": "main_arm",
+            "damage_from_player": false,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Speed_Stat"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "Speed Barrage"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:command_result",
+                        "command": "execute if entity @e[distance=0.01..-1,type=!item,type=!armor_stand,type=!item_frame,type=!palladium:custom_projectile,type=!experience_orb]",
+                        "comparison": "==",
+                        "compare_to": 1,
+                        "log": false
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Speed.Stat",
+                        "min_score": 70,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:sprinting"
+                    }
+                ]
+            }
+        },
+        "Momentum Punch_Com": {
+            "type": "heroes:speed_attack",
+            "hidden": true,
+            "attack_damage_score": "Heroes.Speed.Damage",
+            "attack_range": "-1",
+            "divide_amount": "1",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Momentum Swing"
+                    }
+                ]
+            }
+        }
+    }
+}

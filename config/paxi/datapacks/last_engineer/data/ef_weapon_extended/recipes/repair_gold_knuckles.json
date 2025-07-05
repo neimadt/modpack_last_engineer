@@ -1,0 +1,7 @@
+{
+    "type": "minecraft:anvil_repair",
+    "baseItem": "ef_weapon_extended:gold_knuckles",
+    "repairItem": {
+        "item": "minecraft:gold_ingot"
+    }
+}

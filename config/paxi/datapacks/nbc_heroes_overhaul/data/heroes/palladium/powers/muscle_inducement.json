@@ -1,0 +1,1267 @@
+{
+    "name": "[Induced Muscle Expansion]",
+    "background": "minecraft:textures/block/tinted_glass.png",
+    "icon": "heroes:textures/gui/dna_icon.png",
+    "ability_bar_texture": "heroes:textures/gui/ability_bars/powers.png",
+    "persistent_data": true,
+    "abilities": {
+        "Muscle_Loop": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [
+                "tag @s remove Heroes.Muscle_Form",
+                "scoreboard objectives add Heroes.Muscle_Inducement.Stage dummy",
+                "execute unless score @s Heroes.Muscle_Inducement.Stage matches 1.. run scoreboard players set @s Heroes.Muscle_Inducement.Stage 1",
+                "scoreboard objectives add Heroes.Muscle_Inducement.Stage.Max dummy",
+                "scoreboard players set @s Heroes.Muscle_Inducement.Stage.Max 1",
+                "scoreboard objectives add Heroes.Toggle.Muscle_Inducement dummy",
+                "execute unless score @s Heroes.Toggle.Muscle_Inducement matches 0.. run scoreboard players set @s Heroes.Toggle.Muscle_Inducement 0"
+            ],
+            "last_tick_commands": [
+                "tag @s remove Heroes.Muscle_Form"
+            ],
+            "commands": [
+                "execute unless entity @s[scores={Powers.Muscle_Inducement=1..}] unless entity @s[scores={Powers.Fake.Muscle_Inducement=1..}] run superpower remove heroes:muscle_inducement"
+            ]
+        },
+        "genetic_marker": {
+            "type": "palladium:dummy",
+            "title": "Genetic Marker",
+            "icon": "heroes:textures/gui/dna_icon.png",
+            "gui_position": [
+                0,
+                0
+            ],
+            "description": {
+                "text": "Through either natural or artificial means, you've obtained an ability that others would deem impossible. Be careful, as those who thirst for power may seek out what you now possess."
+            },
+            "list_index": -1,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Powers.Suppresed",
+                                "min_score": 1,
+                                "max_score": 10000000
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:has_tag",
+                        "tag": "Heroes.Enabled"
+                    }
+                ]
+            }
+        },
+        "Toggle_Ability_Bar": {
+            "type": "palladium:command",
+            "hidden": false,
+            "commands": [
+                "scoreboard players add @s Heroes.Toggle.Muscle_Inducement 1",
+                "scoreboard players set @s[scores={Heroes.Toggle.Muscle_Inducement=2..}] Heroes.Toggle.Muscle_Inducement 0",
+                "ability lock @s heroes:muscle_inducement Toggle_Ability_Bar"
+            ],
+            "icon": "heroes:textures/gui/ability_menu.png",
+            "title": "Toggle Ability Bar",
+            "description": "Toggles off the ability bar for this power but keeps passives enabled.",
+            "gui_position": [
+                -1,
+                0
+            ],
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "Powers.Suppresed",
+                        "score": 0,
+                        "icon": "heroes:textures/gui/ability_menu.png",
+                        "description": {
+                            "text": "Toggle On/Off"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Ability_Bar_Visible": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Toggle.Muscle_Inducement",
+                        "min_score": 0,
+                        "max_score": 0
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Toggle.Bars",
+                        "min_score": 0,
+                        "max_score": 0
+                    }
+                ]
+            }
+        },
+        "Buff_Up": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/buff_size_icon.png",
+            "gui_position": [
+                0,
+                -1
+            ],
+            "title": "Induce Muscle Expansion",
+            "bar_color": "red",
+            "list_index": 0,
+            "first_tick_commands": [
+                "tag @s add Heroes.Muscle_Form",
+                "particle minecraft:cloud ~ ~1.1 ~ 0.4 0.8 0.4 0 10"
+            ],
+            "last_tick_commands": [
+                "tag @s remove Heroes.Muscle_Form"
+            ],
+            "commands": [
+                "scale easing set palladium:ability pehkui:exponential_in_out",
+                "scoreboard players add @s Heroes.Concentration.Hold 1"
+            ],
+            "description": "You've gained the ability to temporarily empower your muscles, granting enhanced strength and agility.",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:toggle",
+                        "cooldown": 0,
+                        "key_type": "key_bind"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Stamina",
+                        "min_score": 2,
+                        "max_score": 1000000
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Concentration.Usable",
+                        "min_score": 1,
+                        "max_score": 12
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:or",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "Buff_Up"
+                            },
+                            {
+                                "type": "palladium:not",
+                                "conditions": [
+                                    {
+                                        "type": "palladium:and",
+                                        "conditions": [
+                                            {
+                                                "type": "palladium:crouching"
+                                            },
+                                            {
+                                                "type": "palladium:objective_score",
+                                                "objective": "Heroes.Muscle_Inducement.Stage.Max",
+                                                "min_score": 2,
+                                                "max_score": 2147483647
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Buff_Change_Size": {
+            "type": "palladium:command",
+            "hidden": true,
+            "icon": "heroes:textures/gui/buff_size.png",
+            "title": "Induce Muscle Expansion",
+            "bar_color": "red",
+            "list_index": 0,
+            "commands": [
+                "scoreboard players add @s Heroes.Muscle_Inducement.Stage 1",
+                "execute if score @s Heroes.Muscle_Inducement.Stage >= @s Heroes.Muscle_Inducement.Stage.Max run scoreboard players set @s Heroes.Muscle_Inducement.Stage 1",
+                "execute if score @s Heroes.Muscle_Inducement.Stage matches 1 run title @s actionbar \"<Stage 1>\"",
+                "execute if score @s Heroes.Muscle_Inducement.Stage matches 2 run title @s actionbar \"<Stage 2>\"",
+                "execute if score @s Heroes.Muscle_Inducement.Stage matches 3 run title @s actionbar \"<Stage 3>\"",
+                "execute if score @s Heroes.Muscle_Inducement.Stage matches 4 run title @s actionbar \"<Stage 4>\""
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:action",
+                        "cooldown": 0,
+                        "key_type": "key_bind"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:or",
+                        "conditions": [
+                            {
+                                "type": "palladium:crouching"
+                            },
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "Buff_Up"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage.Max",
+                        "min_score": 2,
+                        "max_score": 2147483647
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Muscle_Inducement_Icon": {
+            "type": "palladium:dummy",
+            "icon": "heroes:textures/gui/power_icons/power_11.png",
+            "gui_position": [
+                0,
+                1
+            ],
+            "title": "Induced Muscle Expansion",
+            "description": "You have the ability to expand your bodies muscle mass for explosive power.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Buff_Dummy_1": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/buff_size_1.png",
+            "gui_position": [
+                0.5,
+                -1.5
+            ],
+            "title": "Induce Muscle Growth Stage 1",
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Muscle_Inducement.Stage.Max 3"
+            ],
+            "commands": [],
+            "description": "You've learned to increase the amount your muscles increase.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 15
+                    }
+                ]
+            }
+        },
+        "Buff_Dummy_2": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/buff_size_2.png",
+            "gui_position": [
+                0,
+                -2
+            ],
+            "title": "Induce Muscle Growth Stage 2",
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Muscle_Inducement.Stage.Max 4"
+            ],
+            "commands": [],
+            "description": "You've learned to increase the amount your muscles increase.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Buff_Dummy_1"
+                    },
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 20
+                    }
+                ]
+            }
+        },
+        "Buff_Dummy_3": {
+            "type": "palladium:command",
+            "icon": "heroes:textures/gui/buff_size_3.png",
+            "gui_position": [
+                -0.5,
+                -2.5
+            ],
+            "title": "Induce Muscle Growth Stage 3",
+            "first_tick_commands": [
+                "scoreboard players set @s Heroes.Muscle_Inducement.Stage.Max 5"
+            ],
+            "commands": [],
+            "description": "You've learned to increase the amount your muscles increase.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Buff_Dummy_2"
+                    },
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 25
+                    }
+                ]
+            }
+        },
+        "Buff.Stam.Cost_1": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 1"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 0,
+                        "max_score": 1
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 0,
+                        "disabled_ticks": 20
+                    }
+                ]
+            }
+        },
+        "Buff.Stam.Cost_2": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 1"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 0,
+                        "disabled_ticks": 10
+                    }
+                ]
+            }
+        },
+        "Buff.Stam.Cost_3": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 2"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 3
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 0,
+                        "disabled_ticks": 10
+                    }
+                ]
+            }
+        },
+        "Buff.Stam.Cost_4": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 2"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 0,
+                        "disabled_ticks": 5
+                    }
+                ]
+            }
+        },
+        "Buff_Anim": {
+            "type": "palladium:animation_timer",
+            "hidden": true,
+            "start_value": 0,
+            "max_value": 15,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Buff_Stat_Multi_Str": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 0.15,
+            "operation": 1,
+            "uuid": "2d690f78-5344-11ee-8c99-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 0,
+                        "max_score": 1
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 2,
+            "operation": 0,
+            "uuid": "0bcca51a-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 0,
+                        "max_score": 1
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 4,
+            "operation": 0,
+            "uuid": "0785737e-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 0,
+                        "max_score": 1
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 0.5,
+            "operation": 0,
+            "uuid": "30728f16-897f-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 0,
+                        "max_score": 1
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": 0.25,
+            "operation": 0,
+            "uuid": "6bae12f4-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 0,
+                        "max_score": 1
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_5": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.05,
+            "operation": 0,
+            "uuid": "cc248302-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 0,
+                        "max_score": 1
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 4,
+            "operation": 0,
+            "uuid": "a86f4e36-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 8,
+            "operation": 0,
+            "uuid": "a86f5156-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "57b888be-897f-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": 0.75,
+            "operation": 0,
+            "uuid": "79ea062a-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_5": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.1,
+            "operation": 0,
+            "uuid": "d6e47b1c-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Buff_Size_2": {
+            "type": "palladium:size",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "scale": 1.15,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 2
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 3
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 6,
+            "operation": 0,
+            "uuid": "a86f5296-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 3
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 10,
+            "operation": 0,
+            "uuid": "a86f5520-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 3
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 2,
+            "operation": 0,
+            "uuid": "57b88b20-897f-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 3
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": 0.15,
+            "operation": 0,
+            "uuid": "8959d8c4-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 3
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Buff_Size_3": {
+            "type": "palladium:size",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "scale": 1.3,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 3
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_4": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    }
+                ]
+            }
+        },
+        "Buff_Size_4": {
+            "type": "palladium:size",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "scale": 1.5,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    }
+                ]
+            }
+        },
+        "Buff_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": -0.5,
+            "operation": 1,
+            "uuid": "2d690a1e-5344-11ee-8c99-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Buff_Stat_2A": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 10,
+            "operation": 0,
+            "uuid": "2d690dc0-5344-11ee-8c99-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Buff_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 16,
+            "operation": 0,
+            "uuid": "2d6912ca-5344-11ee-8c99-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Buff_Stat_3B": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor_toughness",
+            "amount": 2,
+            "operation": 0,
+            "uuid": "2d6913ec-5344-11ee-8c99-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_4_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 3,
+            "operation": 0,
+            "uuid": "57b88d64-897f-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_4_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": -0.15,
+            "operation": 0,
+            "uuid": "b66a3ec6-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 4,
+                        "max_score": 4
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    }
+                ]
+            }
+        },
+        "Block_Abil": {
+            "type": "palladium:animation_timer",
+            "icon": "heroes:textures/gui/muscle_block.png",
+            "gui_position": [
+                -3,
+                -1.5
+            ],
+            "title": "Block",
+            "bar_color": "red",
+            "list_index": 1,
+            "start_value": 0,
+            "max_value": 5,
+            "hidden": true,
+            "hidden_in_bar": false,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 0,
+                        "needs_empty_hand": false,
+                        "key_type": "key_bind"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 2,
+                        "max_score": 500
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    }
+                ]
+            }
+        },
+        "Block_Abil_Arms": {
+            "type": "palladium:show_both_arms",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_integer_property",
+                        "ability": "Block_Abil",
+                        "property": "value",
+                        "min": 2,
+                        "max": 5
+                    }
+                ]
+            }
+        },
+        "Block_Abil_Stat": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": false,
+            "attribute": "minecraft:generic.armor",
+            "amount": 20,
+            "operation": 0,
+            "uuid": "254f0166-8991-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Block_Abil"
+                    }
+                ]
+            }
+        },
+        "Block_Abil_Com": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [
+                "effect clear @s slowness",
+                "effect clear @s weakness"
+            ],
+            "commands": [
+                "effect give @s slowness 1 3 true",
+                "effect give @s weakness 1 255 true"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Block_Abil"
+                    }
+                ]
+            }
+        },
+        "Slam_Abil": {
+            "type": "palladium:command",
+            "hidden": true,
+            "icon": "heroes:textures/gui/ground_slam.png",
+            "title": "Ground Slam",
+            "bar_color": "red",
+            "list_index": 2,
+            "commands": [],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:activation",
+                        "cooldown": 0,
+                        "ticks": 10,
+                        "key_type": "key_bind"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Stamina",
+                        "min_score": 25,
+                        "max_score": 1000000
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Muscle_Inducement.Stage",
+                        "min_score": 3,
+                        "max_score": 500
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Up"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    }
+                ]
+            }
+        },
+        "Ground_Pound": {
+            "type": "palladium:animation_timer",
+            "hidden": true,
+            "hidden_in_bar": false,
+            "list_index": 1,
+            "start_value": 0,
+            "max_value": 10,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Slam_Abil"
+                    }
+                ]
+            }
+        },
+        "Ground_Pound_NoMove": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": false,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": -1,
+            "operation": 1,
+            "uuid": "254f1166-8991-11ee-b4d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Slam_Abil"
+                    }
+                ]
+            }
+        },
+        "Ground_Pound_Com": {
+            "type": "palladium:command",
+            "hidden": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 25",
+                "playsound minecraft:entity.generic.explode player @a[distance=..10] ~ ~ ~ 1 1.3",
+                "particle minecraft:explosion ~ ~0.2 ~ 2.5 0 2.5 0 15"
+            ],
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ground_Pound"
+                    },
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "Ground_Pound",
+                        "min": 7,
+                        "max": 7
+                    }
+                ]
+            }
+        },
+        "Ground_Pound_Dam": {
+            "type": "heroes:aoe_damage",
+            "radius": 5,
+            "damage": 12,
+            "fire_seconds": 0,
+            "tag_ex": "exclusion_tag",
+            "damage_type": "minecraft:player_attack",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ground_Pound_Com"
+                    }
+                ]
+            }
+        }
+    }
+}

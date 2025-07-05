@@ -1,0 +1,13 @@
+{
+	"parent": "simplyswords:item/template_chakram",
+	"textures": {
+		"layer0": "simplyswords:item/netherite_chakram"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 90, 0, 90 ],
+			"translation": [ -7.8, 8.5, 5],
+			"scale":[ 0.6, 0.6, 1.0 ]
+		}
+    }
+}

@@ -1,0 +1,13 @@
+{
+	"parent": "simplyswords:item/big_handheld",
+	"textures": {
+		"layer0": "simplyswords:item/gold_spear"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 0, 180, 0 ],
+			"translation": [ -1, 14, 7],
+			"scale":[ 1.6, 1.6, 1.0 ]
+		}
+    }
+}

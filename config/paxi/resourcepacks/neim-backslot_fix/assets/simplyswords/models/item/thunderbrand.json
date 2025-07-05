@@ -1,0 +1,15 @@
+{
+	"parent": "simplyswords:item/long_handheld",
+	"textures": {
+		"layer0": "simplyswords:item/thunderbrand_layer_2",
+		"layer1": "simplyswords:item/thunderbrand",
+		"layer2": "simplyswords:item/thunderbrand_layer"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 180, 0, 150 ],
+			"translation": [ 3, 14, 7],
+			"scale":[ 2.25, 2.25, 1.0 ]
+		}
+    }
+}

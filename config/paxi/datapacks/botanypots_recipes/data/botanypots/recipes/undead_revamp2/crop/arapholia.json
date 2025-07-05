@@ -1,0 +1,32 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "bookshelf:item_exists",
+            "values": [
+                "undead_revamp2:arapholia"
+            ]
+        }
+    ],
+    "type": "botanypots:crop",
+    "seed": {
+        "item": "undead_revamp2:arapholia"
+    },
+    "categories": [
+        "dirt"
+    ],
+    "growthTicks": 1800,
+    "display": {
+        "type": "botanypots:aging",
+        "block": "undead_revamp2:arapholia"
+    },
+    "drops": [
+        {
+            "chance": 1.00,
+            "output": {
+                "item": "undead_revamp2:arapholia"
+            },
+            "minRolls": 1,
+            "maxRolls": 1
+        }
+    ]
+}

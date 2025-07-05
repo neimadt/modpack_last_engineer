@@ -1,0 +1,26 @@
+{
+    "parent": "nenufars_weapons:custom/lightningspear",
+    "textures": {
+        "0": "nenufars_weapons:block/lightningspear",
+        "particle": "nenufars_weapons:item/stormspear"
+    },
+    "display": {
+        "head": {
+            "rotation": [
+                0,
+                180,
+                0
+            ],
+            "translation": [
+                0,
+                12,
+                7
+            ],
+            "scale": [
+                1.55,
+                1.55,
+                1.0
+            ]
+        }
+    }
+}

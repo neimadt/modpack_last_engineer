@@ -1,0 +1,50 @@
+{
+    "loader": "forge:separate_transforms",
+    "gui_light": "front",
+    "base": {
+        "parent": "born_in_chaos_v1:custom/spiderbite",
+        "textures": {
+            "0": "born_in_chaos_v1:block/spiderbite"
+        },
+        "display": {
+            "head": {
+                "rotation": [
+                    0,
+                    0,
+                    50
+                ],
+                "translation": [
+                    4,
+                    9,
+                    8.5
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        }
+    },
+    "perspectives": {
+        "gui": {
+            "parent": "item/generated",
+            "textures": {
+                "layer0": "born_in_chaos_v1:item/spider_bite"
+            },
+            "gui_light": "front"
+        },
+        "ground": {
+            "parent": "item/generated",
+            "textures": {
+                "layer0": "born_in_chaos_v1:item/spider_bite"
+            }
+        },
+        "fixed": {
+            "parent": "item/generated",
+            "textures": {
+                "layer0": "born_in_chaos_v1:item/spider_bite"
+            }
+        }
+    }
+}

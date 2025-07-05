@@ -1,0 +1,810 @@
+{
+    "name": "[Super Strength]",
+    "background": "minecraft:textures/block/tinted_glass.png",
+    "icon": "heroes:textures/gui/dna_icon.png",
+    "ability_bar_texture": "heroes:textures/gui/ability_bars/powers.png",
+    "persistent_data": true,
+    "abilities": {
+        "Super_Loop": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [
+                "scoreboard objectives add Heroes.Toggle.Super_Strength dummy",
+                "execute unless score @s Heroes.Toggle.Super_Strength matches 0.. run scoreboard players set @s Heroes.Toggle.Super_Strength 0"
+            ],
+            "commands": [
+                "execute unless entity @s[scores={Powers.Super_Strength=1..}] unless entity @s[scores={Powers.Fake.Super_Strength=1..}] run superpower remove heroes:super_strength"
+            ]
+        },
+        "genetic_marker": {
+            "type": "palladium:dummy",
+            "title": "Genetic Marker",
+            "icon": "heroes:textures/gui/dna_icon.png",
+            "gui_position": [
+                0,
+                0
+            ],
+            "description": {
+                "text": "Through either natural or artificial means, you've obtained an ability that others would deem impossible. Be careful, as those who thirst for power may seek out what you now possess."
+            },
+            "list_index": -1,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "Powers.Suppresed",
+                                "min_score": 1,
+                                "max_score": 10000000
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:has_tag",
+                        "tag": "Heroes.Enabled"
+                    }
+                ]
+            }
+        },
+        "Toggle_Ability_Bar": {
+            "type": "palladium:command",
+            "hidden": false,
+            "commands": [
+                "scoreboard players add @s Heroes.Toggle.Super_Strength 1",
+                "scoreboard players set @s[scores={Heroes.Toggle.Super_Strength=2..}] Heroes.Toggle.Super_Strength 0",
+                "ability lock @s heroes:super_strength Toggle_Ability_Bar"
+            ],
+            "icon": "heroes:textures/gui/ability_menu.png",
+            "title": "Toggle Ability Bar",
+            "description": "Toggles off the ability bar for this power but keeps passives enabled.",
+            "gui_position": [
+                -1,
+                0
+            ],
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "Powers.Suppresed",
+                        "score": 0,
+                        "icon": "heroes:textures/gui/ability_menu.png",
+                        "description": {
+                            "text": "Toggle On/Off"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Ability_Bar_Visible": {
+            "type": "palladium:dummy",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Toggle.Super_Strength",
+                        "min_score": 0,
+                        "max_score": 0
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Toggle.Bars",
+                        "min_score": 0,
+                        "max_score": 0
+                    }
+                ]
+            }
+        },
+        "Super_Strength_Icon": {
+            "type": "palladium:dummy",
+            "icon": "heroes:textures/gui/power_icons/power_37.png",
+            "gui_position": [
+                0,
+                1
+            ],
+            "title": "Super Strength",
+            "description": "You've gained the passive ability to enhance your entire body, augmenting strength, speed, and durability.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Buff_Dummy_1": {
+            "type": "palladium:dummy",
+            "icon": "heroes:textures/gui/super_strength_1.png",
+            "gui_position": [
+                -0.5,
+                -1
+            ],
+            "title": "Cognitive Comprehension",
+            "description": "You have developed a better understanding of your ability, and as such are better at applying it.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 15
+                    }
+                ]
+            }
+        },
+        "Buff_Dummy_2": {
+            "type": "palladium:dummy",
+            "icon": "heroes:textures/gui/super_strength_2.png",
+            "gui_position": [
+                0,
+                -2
+            ],
+            "title": "Bodily Adaptation",
+            "description": "Your body has fully adapted to your ability and is better suited to channeling its power.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Buff_Dummy_1"
+                    },
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 20
+                    }
+                ]
+            }
+        },
+        "Buff_Dummy_3": {
+            "type": "palladium:dummy",
+            "icon": "heroes:textures/gui/super_strength_3.png",
+            "gui_position": [
+                0.5,
+                -3
+            ],
+            "title": "Mental Block Removal",
+            "description": "You have finally surpassed your body's natural mental limiter and can utilize your full power unhindered.",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "Buff_Dummy_2"
+                    },
+                    {
+                        "type": "palladium:experience_level_buyable",
+                        "xp_level": 25
+                    }
+                ]
+            }
+        },
+        "Buff_Stat_Multi_Str": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 0.05,
+            "operation": 1,
+            "uuid": "2d690f78-6344-11ee-7c99-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_0_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 2,
+            "operation": 0,
+            "uuid": "0bcca51a-88ea-11ee-b8d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_0_Stat_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 3,
+            "operation": 0,
+            "uuid": "0785737e-88ea-11ee-b6d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_0_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 0.5,
+            "operation": 0,
+            "uuid": "00728f16-897f-11ee-b5d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_0_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": 0.15,
+            "operation": 0,
+            "uuid": "0bae12f4-8992-11ee-b4d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_0_Stat_5": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.025,
+            "operation": 0,
+            "uuid": "cc048302-8992-11ee-b9d1-0342ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "genetic_marker"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 2,
+            "operation": 0,
+            "uuid": "1bcca51a-88ea-11ee-b9d1-0142ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_1"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 3,
+            "operation": 0,
+            "uuid": "1785737e-88ea-11ee-b9d1-0292ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_1"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "10728f16-897f-11ee-b9d1-0282ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_1"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": 0.15,
+            "operation": 0,
+            "uuid": "1bae12f4-8992-11ee-b9d1-0247ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_1"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_1_Stat_5": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.025,
+            "operation": 0,
+            "uuid": "cc148302-8992-11ee-b9d1-0246ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_1"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 2,
+            "operation": 0,
+            "uuid": "2bcca51a-88ea-11ee-b9d1-0252ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_2"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 3,
+            "operation": 0,
+            "uuid": "2785737e-88ea-11ee-b9d1-0442ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_2"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "20728f16-897f-11ee-b9d1-3242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_2"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": 0.15,
+            "operation": 0,
+            "uuid": "2bae12f4-8992-11ee-b9d1-2242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_2"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_2_Stat_5": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.025,
+            "operation": 0,
+            "uuid": "cc248302-8992-11ee-b9d1-1242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_2"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 2,
+            "operation": 0,
+            "uuid": "9bcca51a-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_3"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 3,
+            "operation": 0,
+            "uuid": "8785737e-88ea-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_3"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:fall_resistance",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "70728f16-897f-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_3"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_4": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:jump_power",
+            "amount": 0.15,
+            "operation": 0,
+            "uuid": "6bae12f4-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_3"
+                    }
+                ]
+            }
+        },
+        "Muscle_Stage_3_Stat_5": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.025,
+            "operation": 0,
+            "uuid": "cc548302-8992-11ee-b9d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_3"
+                    }
+                ]
+            }
+        },
+        "Block_Abil": {
+            "type": "palladium:animation_timer",
+            "icon": "heroes:textures/gui/muscle_block.png",
+            "gui_position": [
+                -3,
+                -1.5
+            ],
+            "title": "Block",
+            "bar_color": "black",
+            "list_index": 0,
+            "start_value": 0,
+            "max_value": 5,
+            "hidden": true,
+            "hidden_in_bar": false,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 0,
+                        "needs_empty_hand": false,
+                        "key_type": "key_bind"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "genetic_marker"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    }
+                ]
+            }
+        },
+        "Block_Abil_Arms": {
+            "type": "palladium:show_both_arms",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_integer_property",
+                        "ability": "Block_Abil",
+                        "property": "value",
+                        "min": 2,
+                        "max": 5
+                    }
+                ]
+            }
+        },
+        "Block_Abil_Stat": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": false,
+            "attribute": "minecraft:generic.armor",
+            "amount": 20,
+            "operation": 0,
+            "uuid": "254f0166-8991-11ee-b4d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Block_Abil"
+                    }
+                ]
+            }
+        },
+        "Block_Abil_Com": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [
+                "effect clear @s slowness",
+                "effect clear @s weakness"
+            ],
+            "commands": [
+                "effect give @s slowness 1 3 true",
+                "effect give @s weakness 1 255 true"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Block_Abil"
+                    }
+                ]
+            }
+        },
+        "Slam_Abil": {
+            "type": "palladium:command",
+            "hidden": true,
+            "icon": "heroes:textures/gui/ground_slam.png",
+            "title": "Ground Slam",
+            "bar_color": "black",
+            "list_index": 1,
+            "commands": [],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:activation",
+                        "cooldown": 0,
+                        "ticks": 10,
+                        "key_type": "key_bind"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Stamina",
+                        "min_score": 25,
+                        "max_score": 1000000
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_1"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    }
+                ]
+            }
+        },
+        "Ground_Pound": {
+            "type": "palladium:animation_timer",
+            "hidden": true,
+            "hidden_in_bar": false,
+            "list_index": 1,
+            "start_value": 0,
+            "max_value": 10,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Slam_Abil"
+                    }
+                ]
+            }
+        },
+        "Ground_Pound_NoMove": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": false,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": -1,
+            "operation": 1,
+            "uuid": "254f1166-8991-11ee-b4d1-0242ac120002",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Slam_Abil"
+                    }
+                ]
+            }
+        },
+        "Ground_Pound_Com": {
+            "type": "palladium:command",
+            "hidden": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 25",
+                "playsound minecraft:entity.generic.explode player @a[distance=..10] ~ ~ ~ 1 1.3",
+                "particle minecraft:explosion ~ ~0.2 ~ 2.5 0 2.5 0 15"
+            ],
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ground_Pound"
+                    },
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "Ground_Pound",
+                        "min": 7,
+                        "max": 7
+                    }
+                ]
+            }
+        },
+        "Ground_Pound_Dam": {
+            "type": "heroes:aoe_damage",
+            "radius": 5,
+            "damage": 12,
+            "fire_seconds": 0,
+            "tag_ex": "exclusion_tag",
+            "damage_type": "minecraft:player_attack",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ground_Pound_Com"
+                    }
+                ]
+            }
+        },
+        "Super_Leap": {
+            "type": "palladium:command",
+            "hidden": true,
+            "icon": "heroes:textures/gui/super_leap.png",
+            "title": "Super Leap",
+            "bar_color": "black",
+            "list_index": 2,
+            "commands": [],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:action",
+                        "cooldown": 25,
+                        "key_type": "key_bind"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "Heroes.Stamina",
+                        "min_score": 20,
+                        "max_score": 1000000
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:on_ground"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Buff_Dummy_1"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Ability_Bar_Visible"
+                    }
+                ]
+            }
+        },
+        "Super_Leap_VFX": {
+            "type": "palladium:command",
+            "hidden": true,
+            "commands": [
+                "scoreboard players add @s Heroes.Stamina.Remove 20",
+                "playsound minecraft:entity.generic.explode player @a[distance=..10] ~ ~ ~ 0.8 1.3",
+                "particle minecraft:explosion ~ ~ ~ 0.5 0.5 0.5 0 15"
+            ],
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Super_Leap"
+                    }
+                ]
+            }
+        },
+        "Super_Leap_Motion": {
+            "type": "heroes:motion_abil",
+            "motion_scale": 2.5,
+            "damage_type": "minecraft:player_attack",
+            "hidden": true,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "Super_Leap_VFX"
+                    }
+                ]
+            }
+        }
+    }
+}

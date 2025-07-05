@@ -1,0 +1,13 @@
+{
+	"parent": "simplyswords:item/template_longsword",
+	"textures": {
+		"layer0": "simplyswords:item/gold_rapier"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 90, 0, 90 ],
+			"translation": [ -7.8, 17, 5],
+			"scale":[ 1.55, 1.55, 1.0 ]
+		}
+    }
+}

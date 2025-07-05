@@ -1,0 +1,26 @@
+{
+    "parent": "nenufars_weapons:custom/stormgreatsword",
+    "textures": {
+        "0": "nenufars_weapons:block/stormgreatsword32",
+        "particle": "nenufars_weapons:item/thunderclaymore"
+    },
+    "display": {
+        "head": {
+            "rotation": [
+                0,
+                90,
+                0
+            ],
+            "translation": [
+                1,
+                8,
+                8
+            ],
+            "scale": [
+                1.0,
+                1.25,
+                0.9
+            ]
+        }
+    }
+}

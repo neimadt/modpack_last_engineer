@@ -1,0 +1,14 @@
+{
+	"parent": "simplyswords:item/big_handheld",
+	"textures": {
+		"layer0": "simplyswords:item/runic_scythe",
+		"layer1": "simplyswords:item/runic_scythe_layer"
+	 },
+    "display": {
+        "head": {
+			"rotation": [ 180, 0, 135 ],
+			"translation": [ 0, 8, 7],
+			"scale":[ 1.55, 2.05, 1.0 ]
+		}
+    }
+}

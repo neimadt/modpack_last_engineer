@@ -1,0 +1,13 @@
+{
+	"parent": "simplyswords:item/template_reworked_greathammer",
+	"textures": {
+		"texture": "simplyswords:item/diamond_greathammer"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 180, 0, 80 ],
+			"translation": [ 5, 8, 7],
+			"scale":[ 0.8, 0.8, 1.0 ]
+		}
+    }
+}

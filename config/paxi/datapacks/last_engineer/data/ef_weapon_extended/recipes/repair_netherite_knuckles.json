@@ -1,0 +1,7 @@
+{
+    "type": "minecraft:anvil_repair",
+    "baseItem": "ef_weapon_extended:netherite_knuckles",
+    "repairItem": {
+        "item": "minecraft:diamond"
+    }
+}

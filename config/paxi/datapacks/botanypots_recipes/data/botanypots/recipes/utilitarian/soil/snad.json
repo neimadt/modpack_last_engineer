@@ -1,0 +1,21 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "bookshelf:item_exists",
+            "values": [
+                "utilitarian:snad"
+            ]
+        }
+    ],
+    "type": "botanypots:soil",
+    "input": {
+        "item": "utilitarian:snad"
+    },
+    "display": {
+        "block": "utilitarian:snad"
+    },
+    "categories": [
+        "sand"
+    ],
+    "growthModifier": 1.15
+}

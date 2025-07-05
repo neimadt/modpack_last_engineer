@@ -1,0 +1,14 @@
+{
+	"parent": "simplyswords:item/template_claymore",
+	"textures": {
+		"layer0": "simplyswords:item/brimstone_claymore",
+		"layer1": "simplyswords:item/brimstone_layer"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 0, 180, 0 ],
+			"translation": [ 0, 12, 7],
+			"scale":[ 1.55, 1.55, 1.0 ]
+		}
+    }
+}

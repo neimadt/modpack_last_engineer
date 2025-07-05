@@ -1,0 +1,13 @@
+{
+	"parent": "simplyswords:item/template_longsword",
+	"textures": {
+		"layer0": "simplyswords:item/iron_longsword"
+	},
+    "display": {
+        "head": {
+			"rotation": [ 0, 180, 0 ],
+			"translation": [ 0, 12, 7],
+			"scale":[ 1.55, 1.55, 1.0 ]
+		}
+    }
+}

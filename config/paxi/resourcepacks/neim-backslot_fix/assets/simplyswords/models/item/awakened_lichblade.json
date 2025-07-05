@@ -1,0 +1,15 @@
+{
+  	"parent": "simplyswords:item/template_claymore",
+	"textures": {
+		"layer0": "simplyswords:item/lichblade",
+		"layer1": "simplyswords:item/lichblade_edge",
+		"layer2": "simplyswords:item/lichblade_eyes"
+    },
+    "display": {
+        "head": {
+			"rotation": [ 0, 180, 0 ],
+			"translation": [ 0, 12, 7],
+			"scale":[ 1.55, 1.55, 1.0 ]
+		}
+    }
+}
