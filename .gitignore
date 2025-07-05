@@ -44,6 +44,9 @@ xaero*/
 /*.json
 !/manifest.json
 replay_*
+config/
+!config/incontrol/
+!config/paxi/
 
 # Configs you probably want to ignore
 config/fml.toml
