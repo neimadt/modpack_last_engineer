@@ -438,4 +438,22 @@ ServerEvents.recipes((event) => {
       },
     });
   }
+
+  event
+    .custom({
+      type: 'theurgy:liquefaction',
+      ingredient: {
+        item: 'minecraft:smooth_quartz',
+      },
+      liquefaction_time: 500,
+      result: {
+        count: 1,
+        item: 'minecraft:quartz_block',
+      },
+      solvent: {
+        fluid: 'theurgy:sal_ammoniac',
+      },
+      solvent_amount: 500,
+    })
+    .id('last_engineer:theurgy/liquefaction/quartz_block');
 });

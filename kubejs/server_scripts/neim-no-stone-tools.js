@@ -33,7 +33,7 @@ if (Platform.isLoaded('create_sa')) {
   toRemove.push('create_sa:copper_axe');
   toRemove.push('create_sa:copper_shovel');
   toRemove.push('create_sa:copper_hoe');
-  toRemove.push('create_sa:copper_sword');
+  // toRemove.push('create_sa:copper_sword');
 
   toRemove.push('create_sa:copper_helmet');
   toRemove.push('create_sa:copper_chestplate');

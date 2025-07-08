@@ -1,5 +1,6 @@
 ServerEvents.recipes((event) => {
   event.smelting('minecraft:iron_nugget', 'minecraft:iron_bars');
+  event.smelting('minecraft:iron_nugget', 'minecraft:chain');
 
   event.remove({ output: 'minecraft:furnace' });
   event.shaped(Item.of('minecraft:furnace', 1), ['ccc', 'cCc', 'ccc'], {
@@ -68,5 +69,26 @@ ServerEvents.recipes((event) => {
       B: 'minecraft:water_bucket',
     })
     .replaceIngredient('minecraft:water_bucket', 'minecraft:bucket')
-    .id('kubejs:ink_sac');
+    .id('last_engineer:ink_sac');
+
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      pattern: ['LLL', 'SGS', 'S S'],
+      key: {
+        L: {
+          tag: 'minecraft:logs',
+        },
+        G: {
+          item: 'minecraft:gold_block',
+        },
+        S: {
+          item: 'minecraft:stone',
+        },
+      },
+      result: {
+        item: 'minecraft:bell',
+      },
+    })
+    .id('last_engineer:bell');
 });

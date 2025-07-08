@@ -1,8 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "kubejs"
+    },
+    {
+      "path": "config/paxi"
+    }
+  ],
+  "settings": {}
 }

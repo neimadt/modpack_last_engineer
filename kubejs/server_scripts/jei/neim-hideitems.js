@@ -109,6 +109,41 @@ const itemsToBeHidden = [
     removeRecipe: true,
     verify: () => Platform.isLoaded('easy_villagers'),
   },
+  {
+    id: 'integrateddynamics:part_fluid_reader',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('integrateddynamics'),
+  },
+  {
+    id: 'integratedtunnels:part_interface_fluid',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('integratedtunnels'),
+  },
+  {
+    id: 'integratedtunnels:part_interface_filter_fluid',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('integratedtunnels'),
+  },
+  {
+    id: 'integratedtunnels:part_importer_fluid',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('integratedtunnels'),
+  },
+  {
+    id: 'integratedtunnels:part_exporter_fluid',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('integratedtunnels'),
+  },
+  {
+    id: 'integratedtunnels:part_importer_world_fluid',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('integratedtunnels'),
+  },
+  {
+    id: 'integratedtunnels:part_exporter_world_fluid',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('integratedtunnels'),
+  },
 ];
 
 ServerEvents.tags('item', (event) => {
