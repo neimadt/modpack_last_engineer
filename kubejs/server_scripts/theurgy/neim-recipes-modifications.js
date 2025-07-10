@@ -270,4 +270,29 @@ ServerEvents.recipes((event) => {
     .id(
       'last_engineer:theurgy/incubation/dusts_redstone_from_alchemical_sulfur_redstone'
     );
+
+  event.remove({
+    id: 'theurgy:incubation/gems_certus_quartz_from_alchemical_sulfur_certus_quartz',
+  });
+  event
+    .custom({
+      type: 'theurgy:incubation',
+      incubation_time: 100,
+      mercury: {
+        item: 'theurgy:mercury_shard',
+      },
+      result: {
+        count: 1,
+        item: 'ae2:certus_quartz_crystal',
+      },
+      salt: {
+        item: 'theurgy:alchemical_salt_mineral',
+      },
+      sulfur: {
+        item: 'theurgy:alchemical_sulfur_certus_quartz',
+      },
+    })
+    .id(
+      'last_engineer:theurgy/incubation/gems_certus_quartz_from_alchemical_sulfur_certus_quartz'
+    );
 });

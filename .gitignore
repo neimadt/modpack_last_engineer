@@ -49,7 +49,8 @@ config/*
 !config/incontrol/**
 !/config/paxi/
 !/config/paxi/**
-
+!config/apotheosis/
+!config/apotheosis/**
 
 # Configs you probably want to ignore
 config/fml.toml

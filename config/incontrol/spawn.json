@@ -26,9 +26,9 @@
         "result": "deny"
     },
     {
-        "mod": "enemyexpansion",
+        "mod": "eeeabsmobs",
         "mincount": {
-            "mod": "enemyexpansion",
+            "mod": "eeeabsmobs",
             "amount": 11,
             "hostile": true,
             "perplayer": true
@@ -46,7 +46,7 @@
     },
     {
         "phase": "days_1_to_3",
-        "mod": "enemyexpansion",
+        "mod": "eeeabsmobs",
         "result": "deny",
         "random": 0.35
     },
@@ -61,7 +61,7 @@
     },
     {
         "phase": "days_4_to_6",
-        "mod": "enemyexpansion",
+        "mod": "eeeabsmobs",
         "result": "deny",
         "random": 0.15
     },
@@ -76,7 +76,7 @@
     },
     {
         "phase": "days_7_to_9",
-        "mod": "enemyexpansion",
+        "mod": "eeeabsmobs",
         "result": "deny",
         "random": 0.05
     },
@@ -109,48 +109,188 @@
         "result": "deny"
     },
     {
-        "mob": [
-            "enemyexpansion:faller",
-            "enemyexpansion:troll",
-            "enemyexpansion:direwolf",
-            "enemyexpansion:silverqueen",
-            "enemyexpansion:huntsman",
-            "enemyexpansion:crawler",
-            "enemyexpansion:intruder",
-            "enemyexpansion:vampire",
-            "enemyexpansion:sprinter",
-            "enemyexpansion:slugger",
-            "enemyexpansion:meature",
-            "enemyexpansion:equestrian",
-            "enemyexpansion:goblin",
-            "enemyexpansion:starved",
-            "enemyexpansion:tarantula",
-            "enemyexpansion:wasp"
+        "mod": [
+            "born_in_chaos_v1",
+            "cataclysm",
+            "majruszsdifficulty",
+            "minecraft"
         ],
-        "when": "position",
+        "biome": "alexscaves:abyssal_chasm",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mod": [
+            "born_in_chaos_v1",
+            "majruszsdifficulty",
+            "minecraft"
+        ],
+        "biome": "alexscaves:candy_cavity",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mod": [
+            "born_in_chaos_v1",
+            "majruszsdifficulty",
+            "minecraft"
+        ],
+        "biome": "alexscaves:forlorn_hollows",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexscaves:gloomoth",
+        "dimension": "minecraft:overworld",
+        "biome": "alexscaves:forlorn_hollows",
         "result": "allow",
-        "maxlight": 0
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexscaves:gloomoth",
+        "dimension": "minecraft:overworld",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mod": [
+            "born_in_chaos_v1",
+            "majruszsdifficulty",
+            "minecraft"
+        ],
+        "biome": "alexscaves:magnetic_caves",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexscaves:notor",
+        "dimension": "minecraft:overworld",
+        "biome": "alexscaves:magnetic_caves",
+        "result": "allow",
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexscaves:notor",
+        "dimension": "minecraft:overworld",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mod": [
+            "born_in_chaos_v1",
+            "majruszsdifficulty",
+            "minecraft"
+        ],
+        "biome": "alexscaves:primordial_caves",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mod": [
+            "born_in_chaos_v1",
+            "majruszsdifficulty",
+            "minecraft"
+        ],
+        "biome": "alexscaves:toxic_caves",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexscaves:gammaroach",
+        "dimension": "minecraft:overworld",
+        "biome": "alexscaves:toxic_caves",
+        "result": "allow",
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexscaves:gammaroach",
+        "dimension": "minecraft:overworld",
+        "result": "deny",
+        "when": "onjoin"
     },
     {
         "mob": [
-            "enemyexpansion:faller",
-            "enemyexpansion:troll",
-            "enemyexpansion:direwolf",
-            "enemyexpansion:silverqueen",
-            "enemyexpansion:huntsman",
-            "enemyexpansion:crawler",
-            "enemyexpansion:intruder",
-            "enemyexpansion:vampire",
-            "enemyexpansion:sprinter",
-            "enemyexpansion:slugger",
-            "enemyexpansion:meature",
-            "enemyexpansion:equestrian",
-            "enemyexpansion:goblin",
-            "enemyexpansion:starved",
-            "enemyexpansion:tarantula",
-            "enemyexpansion:wasp"
+            "alexsmobs:centipede_head",
+            "alexsmobs:cockroach",
+            "alexsmobs:fly",
+            "alexsmobs:murmur"
         ],
-        "when": "position",
+        "dimension": "minecraft:overworld",
+        "biome": [
+            "alexscaves:candy_cavity",
+            "alexscaves:forlorn_hollows",
+            "alexscaves:magnetic_caves",
+            "alexscaves:primordial_caves",
+            "alexscaves:toxic_caves"
+        ],
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexsmobs:mantis_shrimp",
+        "dimension": "minecraft:overworld",
+        "biome": [
+            "minecraft:mangrove_swamp",
+            "minecraft:warm_ocean"
+        ],
+        "result": "allow",
+        "when": "onjoin"
+    },
+    {
+        "mob": "alexsmobs:mantis_shrimp",
+        "dimension": "minecraft:overworld",
+        "result": "deny",
+        "when": "onjoin"
+    },
+    {
+        "mob": "minecraft:guardian",
+        "mincount": 18,
         "result": "deny"
+    },
+    {
+        "mob": [
+            "born_in_chaos_v1:corpse_fish",
+            "born_in_chaos_v1:glutton_fish",
+            "cataclysm:deepling",
+            "cataclysm:deepling_angler",
+            "cataclysm:deepling_brute",
+            "cataclysm:lionfish",
+            "minecraft:drowned"
+        ],
+        "mintime": 23000,
+        "maxtime": 23999,
+        "spawntype": "natural",
+        "result": "deny"
+    },
+    {
+        "mob": [
+            "born_in_chaos_v1:corpse_fish",
+            "born_in_chaos_v1:glutton_fish",
+            "cataclysm:deepling",
+            "cataclysm:deepling_angler",
+            "cataclysm:deepling_brute",
+            "cataclysm:lionfish",
+            "minecraft:drowned"
+        ],
+        "mintime": 0,
+        "maxtime": 13000,
+        "spawntype": "natural",
+        "result": "deny"
+    },
+    {
+        "mob": [
+            "cataclysm:deepling",
+            "cataclysm:deepling_angler",
+            "cataclysm:deepling_brute",
+            "cataclysm:lionfish"
+        ],
+        "structure": "cataclysm:sunken_city",
+        "result": "allow"
+    },
+    {
+        "mob": "alexsmobs:enderiophage",
+        "dimension": "minecraft:the_end",
+        "biome": "minecraft:end_highlands",
+        "result": "allow"
     }
 ]

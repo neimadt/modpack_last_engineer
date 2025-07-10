@@ -1,0 +1,50 @@
+{
+    "loader": "forge:separate_transforms",
+    "gui_light": "front",
+    "base": {
+        "parent": "weapon_class:custom/gauntlet",
+        "textures": {
+            "0": "weapon_class:block/gauntlet_texture",
+            "particle": "weapon_class:item/gauntlet"
+        },
+        "display": {
+            "head": {
+                "rotation": [
+                    -90,
+                    130,
+                    0
+                ],
+                "translation": [
+                    2,
+                    12,
+                    4.5
+                ],
+                "scale": [
+                    0.8,
+                    0.8,
+                    0.8
+                ]
+            }
+        }
+    },
+    "perspectives": {
+        "gui": {
+            "parent": "item/generated",
+            "textures": {
+                "layer0": "weapon_class:item/gauntlet"
+            }
+        },
+        "ground": {
+            "parent": "item/generated",
+            "textures": {
+                "layer0": "weapon_class:item/gauntlet"
+            }
+        },
+        "fixed": {
+            "parent": "item/generated",
+            "textures": {
+                "layer0": "weapon_class:item/gauntlet"
+            }
+        }
+    }
+}
