@@ -5,7 +5,6 @@ debug.log
 latest.log
 
 # Local player settings
-options.txt
 usercache.json
 usernamecache.json
 servers.dat

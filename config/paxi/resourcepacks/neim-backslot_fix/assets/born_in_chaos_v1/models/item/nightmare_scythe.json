@@ -2,26 +2,26 @@
     "loader": "forge:separate_transforms",
     "gui_light": "front",
     "base": {
-        "parent": "born_in_chaos_v1:custom/spiderbite",
+        "parent": "born_in_chaos_v1:custom/nightmarescythe",
         "textures": {
-            "0": "born_in_chaos_v1:block/spiderbite"
+            "0": "born_in_chaos_v1:block/nightmarescythe"
         },
         "display": {
             "head": {
                 "rotation": [
                     0,
-                    0,
-                    50
+                    90,
+                    0
                 ],
                 "translation": [
-                    4,
-                    9,
-                    8.5
+                    3,
+                    8,
+                    9.5
                 ],
                 "scale": [
-                    0.8,
-                    0.8,
-                    0.8
+                    0.75,
+                    0.75,
+                    0.75
                 ]
             }
         }
@@ -30,20 +30,20 @@
         "gui": {
             "parent": "item/generated",
             "textures": {
-                "layer0": "born_in_chaos_v1:item/spider_bite"
+                "layer0": "born_in_chaos_v1:item/nightmare_scythe"
             },
             "gui_light": "front"
         },
         "ground": {
             "parent": "item/generated",
             "textures": {
-                "layer0": "born_in_chaos_v1:item/spider_bite"
+                "layer0": "born_in_chaos_v1:item/nightmare_scythe"
             }
         },
         "fixed": {
             "parent": "item/generated",
             "textures": {
-                "layer0": "born_in_chaos_v1:item/spider_bite"
+                "layer0": "born_in_chaos_v1:item/nightmare_scythe"
             }
         }
     }
