@@ -39,4 +39,10 @@ ServerEvents.recipes((event) => {
       }
     )
     .id('last_engineer:integratedtunnels/part_interface_energy');
+
+  event
+    .shapeless(Item.of('minecraft:ender_pearl', 2), [
+      'integrateddynamics:proto_chorus',
+    ])
+    .id('last_engineer:integrateddynamics/ender_pearl_from_proto_chorus');
 });

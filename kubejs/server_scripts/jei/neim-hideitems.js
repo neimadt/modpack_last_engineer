@@ -79,6 +79,26 @@ const itemsToBeHidden = [
     removeRecipe: true,
     verify: () => Platform.isLoaded('integratedtunnels'),
   },
+  {
+    id: 'rustic_engineer:iron_plate',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('rustic_engineer'),
+  },
+  {
+    id: 'rustic_engineer:rustic_hammer',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('rustic_engineer'),
+  },
+  {
+    id: 'rustic_engineer:iron_placed',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('rustic_engineer'),
+  },
+  {
+    id: 'rustic_engineer:iron_plate_placed',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('rustic_engineer'),
+  },
 ];
 
 ServerEvents.tags('item', (event) => {

@@ -43,13 +43,33 @@ let itemsToAddAttribModifier = {
       'ADDITION'
     ),
   },
+  // 'rustic_engineer:rustic_glider_chestplate': {
+  //   attribute: 'minecraft:generic.armor',
+  //   slots: ['chest'],
+  //   modifier: new $AttributeModifier(
+  //     '622e272d-64c0-4582-a5da-a356e5277b48',
+  //     'generic.armor',
+  //     0,
+  //     'ADDITION'
+  //   ),
+  // },
+  // 'rustic_engineer:rustic_glider_speed_chestplate': {
+  //   attribute: 'minecraft:generic.armor',
+  //   slots: ['chest'],
+  //   modifier: new $AttributeModifier(
+  //     '622e272d-64c0-4582-a5da-a356e5277b48',
+  //     'generic.armor',
+  //     0,
+  //     'ADDITION'
+  //   ),
+  // },
 };
 
 ForgeEvents.onEvent(
   'net.minecraftforge.event.ItemAttributeModifierEvent',
   (event) => {
     const item = itemsToAddAttribModifier[event.itemStack.id];
-    if (!item || item.slots.indexOf(event.slotType) < 0) return;
+    if (!item || (item.slots && item.slots.indexOf(event.slotType) < 0)) return;
 
     event.removeAttribute(item.attribute);
     event.addModifier(item.attribute, item.modifier);
@@ -76,33 +96,4 @@ ItemEvents.modification((event) => {
     item.attackSpeed = -1.9;
     item.attackDamage = 7.0;
   });
-
-  // event.modify('weapon_class:gauntlet', (item) => {
-  //   item.attackSpeed = -2.1;
-  // });
-
-  // event.modify('weapon_class:gauntlet', (item) => {
-  //   let attribute = item.getAttributes('generic.attack_speed').get(0);
-  //   //we need to overwrite the axe's attribute
-  //   item.removeAttribute('generic.attack_speed', attribute.id);
-  //   item.addAttribute(
-  //     'generic.attack_speed',
-  //     attribute.id,
-  //     attribute.name,
-  //     -2.1,
-  //     attribute.operation
-  //   );
-  // });
-
-  // event.modify('cataclysm:gauntlet_of_guard', (item) => {
-  //   item.attackSpeed = -2.1;
-  // });
-
-  // event.modify('cataclysm:gauntlet_of_maelstrom', (item) => {
-  //   item.attackSpeed = -2.1;
-  // });
-
-  // event.modify('cataclysm:gauntlet_of_bulwark', (item) => {
-  //   item.attackSpeed = -2.1;
-  // });
 });

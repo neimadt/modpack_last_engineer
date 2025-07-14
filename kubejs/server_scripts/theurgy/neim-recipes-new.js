@@ -439,6 +439,27 @@ ServerEvents.recipes((event) => {
     });
   }
 
+  if (Platform.isLoaded('dungeons_and_combat')) {
+    handleRecipe(event, {
+      id: 'dungeons_and_combat_silver',
+      material: 'dungeons_and_combat:silver_ingot',
+      materialOre: [
+        { id: 'dungeons_and_combat:raw_silver', count: 3 },
+        {
+          id: 'dungeons_and_combat:silver_ore',
+          count: 4,
+        },
+        {
+          id: 'dungeons_and_combat:silver_deepslate_ore',
+          count: 4,
+        },
+      ],
+      sulfur: 'theurgy:alchemical_sulfur_silver',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
+  }
+
   event
     .custom({
       type: 'theurgy:liquefaction',
