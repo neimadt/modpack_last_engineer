@@ -84,7 +84,8 @@ ServerEvents.recipes((event) => {
     })
     .id('last_engineerimmersive_aircraft/biplane');
 
-  event.remove({ output: 'immersive_aircraft:wireless_terminal' });
+  event.remove({ output: 'immersive_aircraft:boiler' });
+  // event.remove({ output: 'immersive_aircraft:wireless_terminal' });
   event
     .shaped(Item.of('immersive_aircraft:boiler', 1), ['S', 'N', 'I'], {
       I: 'create:blaze_burner',

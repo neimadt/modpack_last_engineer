@@ -1,11 +1,71 @@
 ServerEvents.recipes((event) => {
-  event
-    .shapeless(Item.of('minecraft:black_dye', 1), ['minecraft:coal'])
-    .id('last_engineer:black_dye_from_coal');
+  if (Platform.isLoaded('quark')) {
+    event.remove({
+      id: 'quark:tweaks/crafting/utility/misc/coal_to_black_dye',
+    });
+
+    event.remove({
+      id: 'quark:tweaks/crafting/utility/misc/charcoal_to_black_dye',
+    });
+  }
 
   event
-    .shapeless(Item.of('minecraft:black_dye', 1), ['minecraft:charcoal'])
-    .id('last_engineer:black_dye_from_charcoal');
+    .shapeless(Item.of('minecraft:black_dye', 1), [
+      'minecraft:coal',
+      'minecraft:water_bucket',
+    ])
+    .replaceIngredient('minecraft:water_bucket', 'minecraft:bucket')
+    .id('last_engineer:black_dye_from_water_bucket_and_coal');
+
+  event
+    .custom({
+      type: 'minecraft:crafting_shapeless',
+      ingredients: [
+        {
+          item: 'minecraft:coal',
+        },
+        {
+          type: 'forge:partial_nbt',
+          item: 'minecraft:potion',
+          nbt: '{Potion:"minecraft:water"}',
+        },
+      ],
+      result: {
+        item: 'minecraft:black_dye',
+        count: 1,
+      },
+    })
+    .replaceIngredient('minecraft:potion', 'minecraft:glass_bottle')
+    .id('last_engineer:black_dye_from_potion_and_coal');
+
+  event
+    .shapeless(Item.of('minecraft:black_dye', 1), [
+      'minecraft:charcoal',
+      'minecraft:water_bucket',
+    ])
+    .replaceIngredient('minecraft:water_bucket', 'minecraft:bucket')
+    .id('last_engineer:black_dye_from_water_bucket_and_charcoal');
+
+  event
+    .custom({
+      type: 'minecraft:crafting_shapeless',
+      ingredients: [
+        {
+          item: 'minecraft:charcoal',
+        },
+        {
+          type: 'forge:partial_nbt',
+          item: 'minecraft:potion',
+          nbt: '{Potion:"minecraft:water"}',
+        },
+      ],
+      result: {
+        item: 'minecraft:black_dye',
+        count: 1,
+      },
+    })
+    .replaceIngredient('minecraft:potion', 'minecraft:glass_bottle')
+    .id('last_engineer:black_dye_from_potion_and_charcoal');
 
   if (Platform.isLoaded('utilitarian')) {
     event.remove({ id: 'utilitarian:utility/green_dye' });

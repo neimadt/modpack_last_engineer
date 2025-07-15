@@ -99,4 +99,238 @@ ServerEvents.recipes((event) => {
       },
     })
     .id('last_engineer:rustic_engineer/rustic_goggles_helmet');
+
+  event.remove({ output: 'rustic_engineer:rustic_glider_chestplate' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      category: 'misc',
+      pattern: ['aba', 'cdc', 'ePe'],
+      key: {
+        a: {
+          item: 'minecraft:white_wool',
+        },
+        b: {
+          item: 'rustic_engineer:movable_parts',
+        },
+        c: {
+          tag: 'minecraft:planks',
+        },
+        d: {
+          item: 'rustic_engineer:gear',
+        },
+        e: {
+          item: 'rustic_engineer:iron_pieces',
+        },
+        P: {
+          item: 'create:precision_mechanism',
+        },
+      },
+      result: {
+        item: 'rustic_engineer:rustic_glider_chestplate',
+        count: 1,
+      },
+    })
+    .id('last_engineer:rustic_engineer/rustic_glider_chestplate');
+
+  event.remove({ output: 'rustic_engineer:speed_booster' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      category: 'misc',
+      pattern: ['aPa', 'cdc', 'aEa'],
+      key: {
+        a: {
+          item: 'rustic_engineer:iron_pieces',
+        },
+        c: {
+          item: 'rustic_engineer:movable_parts',
+        },
+        d: {
+          item: 'rustic_engineer:gear',
+        },
+        P: {
+          item: 'immersive_aircraft:propeller',
+        },
+        E: {
+          item: 'create_sa:heat_engine',
+        },
+      },
+      result: {
+        item: 'rustic_engineer:speed_booster',
+        count: 1,
+      },
+    })
+    .id('last_engineer:rustic_engineer/speed_booster');
+
+  event.remove({ output: 'rustic_engineer:rustic_glider_speed_chestplate' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      category: 'misc',
+      pattern: ['aBa', 'bcb', 'a a'],
+      key: {
+        B: {
+          item: 'minecraft:blaze_powder',
+        },
+        a: {
+          item: 'rustic_engineer:iron_pieces',
+        },
+        b: {
+          item: 'rustic_engineer:speed_booster',
+        },
+        c: {
+          item: 'rustic_engineer:rustic_glider_chestplate',
+        },
+      },
+      result: {
+        item: 'rustic_engineer:rustic_glider_speed_chestplate',
+        count: 1,
+      },
+    })
+    .id('last_engineer:rustic_engineer/rustic_glider_speed_chestplate');
+
+  event.remove({ output: 'rustic_engineer:spider_mech_item' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      category: 'misc',
+      pattern: [' P ', 'bcd', 'aeE'],
+      key: {
+        P: {
+          item: 'create:precision_mechanism',
+        },
+        a: {
+          item: 'rustic_engineer:engine',
+        },
+        b: {
+          item: 'rustic_engineer:gear',
+        },
+        c: {
+          item: 'rustic_engineer:book_spidermech',
+        },
+        d: {
+          item: 'rustic_engineer:movable_parts',
+        },
+        e: {
+          item: 'rustic_engineer:iron_pieces',
+        },
+        E: {
+          item: 'create_sa:hydraulic_engine',
+        },
+      },
+      result: {
+        item: 'rustic_engineer:spider_mech_item',
+        count: 1,
+      },
+    })
+    .id('last_engineer:rustic_engineer/spider_mech_item');
+
+  event.remove({ output: 'rustic_engineer:air_ship_item' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      category: 'misc',
+      pattern: [' P ', 'bcd', 'aeE'],
+      key: {
+        P: {
+          item: 'immersive_aircraft:propeller',
+        },
+        a: {
+          item: 'rustic_engineer:engine',
+        },
+        b: {
+          item: 'rustic_engineer:gear',
+        },
+        c: {
+          item: 'rustic_engineer:book_airship',
+        },
+        d: {
+          item: 'rustic_engineer:movable_parts',
+        },
+        e: {
+          item: 'rustic_engineer:iron_pieces',
+        },
+        E: {
+          item: 'create_sa:heat_engine',
+        },
+      },
+      result: {
+        item: 'rustic_engineer:air_ship_item',
+        count: 1,
+      },
+    })
+    .id('last_engineer:rustic_engineer/air_ship_item');
+
+  event.remove({ output: 'rustic_engineer:dragonfly_item' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      category: 'misc',
+      pattern: [' P ', 'bcd', 'aeE'],
+      key: {
+        P: {
+          item: 'immersive_aircraft:propeller',
+        },
+        a: {
+          item: 'rustic_engineer:engine',
+        },
+        b: {
+          item: 'rustic_engineer:gear',
+        },
+        c: {
+          item: 'rustic_engineer:book_dragon_fly',
+        },
+        d: {
+          item: 'rustic_engineer:movable_parts',
+        },
+        e: {
+          item: 'rustic_engineer:iron_pieces',
+        },
+        E: {
+          item: 'create_sa:steam_engine',
+        },
+      },
+      result: {
+        item: 'rustic_engineer:dragonfly_item',
+        count: 1,
+      },
+    })
+    .id('last_engineer:rustic_engineer/dragonfly_item');
+
+  event.remove({ output: 'rustic_engineer:abyssal_submarine_item' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      category: 'misc',
+      pattern: [' P ', 'bcd', 'aeE'],
+      key: {
+        P: {
+          item: 'immersive_aircraft:propeller',
+        },
+        a: {
+          item: 'rustic_engineer:engine',
+        },
+        b: {
+          item: 'rustic_engineer:gear',
+        },
+        c: {
+          item: 'rustic_engineer:book_abyssal_submarine',
+        },
+        d: {
+          item: 'rustic_engineer:movable_parts',
+        },
+        e: {
+          item: 'rustic_engineer:iron_pieces',
+        },
+        E: {
+          item: 'create_sa:steam_engine',
+        },
+      },
+      result: {
+        item: 'rustic_engineer:abyssal_submarine_item',
+        count: 1,
+      },
+    })
+    .id('last_engineer:rustic_engineer/abyssal_submarine_item');
 });

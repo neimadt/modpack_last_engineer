@@ -46,7 +46,7 @@ ServerEvents.recipes((event) => {
           },
           { item: 'hexerei:blood_bottle' },
           {
-            amount: 5000,
+            amount: 1000,
             fluid: 'minecraft:lava',
             nbt: {},
           },
@@ -66,6 +66,10 @@ ServerEvents.recipes((event) => {
       ? 'create_enchantment_industry:experience'
       : 'minecraft:water';
 
+    const fluidLevelsConsumed = Platform.isLoaded('create_enchantment_industry')
+      ? 200
+      : 1000;
+
     event
       .custom({
         type: 'hexerei:mixingcauldron',
@@ -83,7 +87,7 @@ ServerEvents.recipes((event) => {
             item: 'palladium:redstone_flux_crystal',
           },
           {
-            item: 'heroes:compound_alx_vial',
+            item: 'heroes:compound_alx',
           },
         ],
         output: {
@@ -93,7 +97,8 @@ ServerEvents.recipes((event) => {
         liquidOutput: {
           fluid: fluid,
         },
-        fluidLevelsConsumed: 1500,
+        fluidLevelsConsumed: fluidLevelsConsumed,
+        heatRequirement: 'heated',
       })
       .id('last_engineer:heroes/formula_vial');
   } else {
@@ -115,7 +120,7 @@ ServerEvents.recipes((event) => {
             item: 'palladium:redstone_flux_crystal',
           },
           {
-            item: 'heroes:compound_alx_vial',
+            item: 'heroes:compound_alx',
           },
         ],
         result: {

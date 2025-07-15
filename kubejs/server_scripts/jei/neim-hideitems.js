@@ -15,6 +15,11 @@ const itemsToBeHidden = [
     verify: () => Platform.isLoaded('heroes'),
   },
   {
+    id: 'heroes:compound_alx_vial',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('heroes'),
+  },
+  {
     id: 'create_sa:brass_jetpack_chestplate',
     removeRecipe: true,
     verify: () => Platform.isLoaded('create_sa'),

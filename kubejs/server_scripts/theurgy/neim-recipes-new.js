@@ -477,4 +477,33 @@ ServerEvents.recipes((event) => {
       solvent_amount: 500,
     })
     .id('last_engineer:theurgy/liquefaction/quartz_block');
+
+  if (Platform.isLoaded('dungeons_and_combat')) {
+    handleRecipe(event, {
+      id: 'dark_metal_ingot',
+      material: 'born_in_chaos_v1:dark_metal_ingot',
+      materialOre: [],
+      sulfur: 'kubejs:dark_metal_ingot_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 15,
+      reformationSource: {
+        flux: 150,
+        time: 100,
+        sulfur: [
+          {
+            item: 'theurgy:alchemical_sulfur_metals_precious',
+          },
+        ],
+      },
+      reformationSources: {
+        flux: 150,
+        time: 100,
+        sulfur: [
+          {
+            tag: 'theurgy:alchemical_sulfurs/metals/precious',
+          },
+        ],
+      },
+    });
+  }
 });

@@ -10,6 +10,7 @@ const values = [
   { sulfur: 'cobblestone_sulfur', tier: 'abundant', type: 'other_minerals' },
   { sulfur: 'aluminum_sulfur', tier: 'common', type: 'metals' },
   { sulfur: 'redstone_flux_crystal_sulfur', tier: 'rare', type: 'gems' },
+  { sulfur: 'dark_metal_ingot_sulfur', tier: 'precious', type: 'metals' },
 ];
 
 const handleSulfurTags = (event, args) => {

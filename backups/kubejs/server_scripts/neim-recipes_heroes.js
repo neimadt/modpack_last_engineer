@@ -82,7 +82,7 @@ ServerEvents.recipes((event) => {
             item: 'palladium:redstone_flux_crystal',
           },
           {
-            item: 'heroes:compound_alx_vial',
+            item: 'heroes:compound_alx',
           },
         ],
         output: {
@@ -114,7 +114,7 @@ ServerEvents.recipes((event) => {
             item: 'palladium:redstone_flux_crystal',
           },
           {
-            item: 'heroes:compound_alx_vial',
+            item: 'heroes:compound_alx',
           },
         ],
         result: {

@@ -77,8 +77,17 @@ StartupEvents.registry('item', (event) => {
     event
       .create('redstone_flux_crystal_sulfur', 'theurgy:alchemical_sulfur')
       .sourceItem('palladium:redstone_flux_crystal')
-      .sourceName('Redstone_ Flux Crystal')
+      .sourceName('Redstone Flux Crystal')
       .sulfurTier('rare')
       .sulfurType('gems');
+  }
+
+  if (Platform.isLoaded('born_in_chaos_v1')) {
+    event
+      .create('dark_metal_ingot_sulfur', 'theurgy:alchemical_sulfur')
+      .sourceItem('born_in_chaos_v1:dark_metal_ingot')
+      .sourceName('Dark Metal Ingot')
+      .sulfurTier('precious')
+      .sulfurType('metals');
   }
 });
