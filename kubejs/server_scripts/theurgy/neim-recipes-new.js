@@ -2,7 +2,7 @@ const handleRecipe = (event, args) => {
   const {
     id,
     material,
-    materialOre,
+    resultCount,
     sulfur,
     liquefaction_time,
     solvent_amount,
@@ -13,15 +13,13 @@ const handleRecipe = (event, args) => {
   event
     .custom({
       type: 'theurgy:liquefaction',
-      ingredient: {
-        item: material,
-      },
+      ingredient: material.tag ? { tag: material.tag } : { item: material },
       liquefaction_time: liquefaction_time,
       result: {
-        count: 1,
+        count: resultCount > 0 ? resultCount : 1,
         item: sulfur,
         nbt: {
-          'theurgy:sulfur.source.id': material,
+          'theurgy:sulfur.source.id': material.tag ? material.tag : material,
         },
       },
       solvent: {
@@ -30,39 +28,6 @@ const handleRecipe = (event, args) => {
       solvent_amount: solvent_amount,
     })
     .id(`last_engineer:theurgy/liquefaction/${id}`);
-
-  if (materialOre) {
-    materialOre = Array.isArray(materialOre) ? materialOre : [materialOre];
-
-    let index = 0;
-
-    for (const m of materialOre) {
-      index += 1;
-
-      const ingredient = m.id ? { item: m.id } : m.tag ? { tag: m.tag } : null;
-
-      if (!ingredient) continue;
-
-      event
-        .custom({
-          type: 'theurgy:liquefaction',
-          ingredient: ingredient,
-          liquefaction_time: liquefaction_time,
-          result: {
-            count: m.count,
-            item: sulfur,
-            nbt: {
-              'theurgy:sulfur.source.id': m.tag || m.id,
-            },
-          },
-          solvent: {
-            fluid: 'theurgy:sal_ammoniac',
-          },
-          solvent_amount: solvent_amount,
-        })
-        .id(`last_engineer:theurgy/liquefaction/ore-${index}-${id}`);
-    }
-  }
 
   event
     .custom({
@@ -153,10 +118,6 @@ ServerEvents.recipes((event) => {
   handleRecipe(event, {
     id: 'arcane_crystal',
     material: 'forbidden_arcanus:arcane_crystal',
-    materialOre: [
-      { id: 'forbidden_arcanus:arcane_crystal_ore', count: 4 },
-      { id: 'forbidden_arcanus:deepslate_arcane_crystal_ore', count: 4 },
-    ],
     sulfur: 'kubejs:arcane_crystal_sulfur',
     liquefaction_time: 100,
     solvent_amount: 15,
@@ -181,13 +142,26 @@ ServerEvents.recipes((event) => {
   });
 
   handleRecipe(event, {
+    id: 'arcane_crystal_ore',
+    material: 'forbidden_arcanus:arcane_crystal_ore',
+    resultCount: 4,
+    sulfur: 'kubejs:arcane_crystal_sulfur',
+    liquefaction_time: 100,
+    solvent_amount: 15,
+  });
+
+  handleRecipe(event, {
+    id: 'deepslate_arcane_crystal_ore',
+    material: 'forbidden_arcanus:deepslate_arcane_crystal_ore',
+    resultCount: 4,
+    sulfur: 'kubejs:arcane_crystal_sulfur',
+    liquefaction_time: 100,
+    solvent_amount: 15,
+  });
+
+  handleRecipe(event, {
     id: 'rune',
     material: 'forbidden_arcanus:rune',
-    materialOre: [
-      { id: 'forbidden_arcanus:runic_stone', count: 4 },
-      { id: 'forbidden_arcanus:runic_deepslate', count: 4 },
-      { id: 'forbidden_arcanus:runic_darkstone', count: 4 },
-    ],
     sulfur: 'kubejs:rune_sulfur',
     liquefaction_time: 100,
     solvent_amount: 10,
@@ -211,16 +185,37 @@ ServerEvents.recipes((event) => {
     },
   });
 
+  handleRecipe(event, {
+    id: 'runic_stone',
+    resultCount: 4,
+    material: 'forbidden_arcanus:runic_stone',
+    sulfur: 'kubejs:rune_sulfur',
+    liquefaction_time: 100,
+    solvent_amount: 10,
+  });
+
+  handleRecipe(event, {
+    id: 'runic_deepslate',
+    resultCount: 4,
+    material: 'forbidden_arcanus:runic_deepslate',
+    sulfur: 'kubejs:rune_sulfur',
+    liquefaction_time: 100,
+    solvent_amount: 10,
+  });
+
+  handleRecipe(event, {
+    id: 'runic_darkstone',
+    resultCount: 4,
+    material: 'forbidden_arcanus:runic_darkstone',
+    sulfur: 'kubejs:rune_sulfur',
+    liquefaction_time: 100,
+    solvent_amount: 10,
+  });
+
   if (Platform.isLoaded('powah')) {
     handleRecipe(event, {
       id: 'uraninite',
       material: 'powah:uraninite',
-      materialOre: [
-        { id: 'powah:deepslate_uraninite_ore_poor', count: 2 },
-        { id: 'powah:uraninite_raw', count: 3 },
-        { id: 'powah:deepslate_uraninite_ore', count: 4 },
-        { id: 'powah:deepslate_uraninite_ore_dense', count: 6 },
-      ],
       sulfur: 'kubejs:uraninite_sulfur',
       liquefaction_time: 100,
       solvent_amount: 15,
@@ -242,6 +237,42 @@ ServerEvents.recipes((event) => {
           },
         ],
       },
+    });
+
+    handleRecipe(event, {
+      id: 'deepslate_uraninite_ore_poor',
+      resultCount: 2,
+      material: 'powah:deepslate_uraninite_ore_poor',
+      sulfur: 'kubejs:uraninite_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 15,
+    });
+
+    handleRecipe(event, {
+      id: 'uraninite_raw',
+      resultCount: 3,
+      material: 'powah:uraninite_raw',
+      sulfur: 'kubejs:uraninite_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 15,
+    });
+
+    handleRecipe(event, {
+      id: 'deepslate_uraninite_ore',
+      resultCount: 4,
+      material: 'powah:deepslate_uraninite_ore',
+      sulfur: 'kubejs:uraninite_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 15,
+    });
+
+    handleRecipe(event, {
+      id: 'deepslate_uraninite_ore_dense',
+      resultCount: 6,
+      material: 'powah:deepslate_uraninite_ore_dense',
+      sulfur: 'kubejs:uraninite_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 15,
     });
   }
 
@@ -379,10 +410,6 @@ ServerEvents.recipes((event) => {
     handleRecipe(event, {
       id: 'aluminum',
       material: 'immersiveengineering:ingot_aluminum',
-      materialOre: [
-        { id: 'immersiveengineering:raw_aluminum', count: 3 },
-        { tag: 'forge:ores/aluminum', count: 5 },
-      ],
       sulfur: 'kubejs:aluminum_sulfur',
       liquefaction_time: 100,
       solvent_amount: 10,
@@ -405,16 +432,30 @@ ServerEvents.recipes((event) => {
         ],
       },
     });
+
+    handleRecipe(event, {
+      id: 'raw_aluminum',
+      material: 'immersiveengineering:raw_aluminum',
+      resultCount: 3,
+      sulfur: 'kubejs:aluminum_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
+
+    handleRecipe(event, {
+      id: 'tag/ores/aluminum',
+      material: { tag: 'forge:ores/aluminum' },
+      resultCount: 5,
+      sulfur: 'kubejs:aluminum_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
   }
 
   if (Platform.isLoaded('palladium')) {
     handleRecipe(event, {
       id: 'redstone_flux_crystal',
       material: 'palladium:redstone_flux_crystal',
-      materialOre: [
-        { id: 'palladium:redstone_flux_crystal_geode', count: 4 },
-        { id: 'palladium:deepslate_redstone_flux_crystal_geode', count: 4 },
-      ],
       sulfur: 'kubejs:redstone_flux_crystal_sulfur',
       liquefaction_time: 100,
       solvent_amount: 15,
@@ -437,23 +478,57 @@ ServerEvents.recipes((event) => {
         ],
       },
     });
+
+    handleRecipe(event, {
+      id: 'redstone_flux_crystal_geode',
+      material: 'palladium:redstone_flux_crystal_geode',
+      resultCount: 4,
+      sulfur: 'kubejs:redstone_flux_crystal_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
+
+    handleRecipe(event, {
+      id: 'deepslate_redstone_flux_crystal_geode',
+      material: 'palladium:deepslate_redstone_flux_crystal_geode',
+      resultCount: 4,
+      sulfur: 'kubejs:redstone_flux_crystal_sulfur',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
   }
 
   if (Platform.isLoaded('dungeons_and_combat')) {
     handleRecipe(event, {
       id: 'dungeons_and_combat_silver',
       material: 'dungeons_and_combat:silver_ingot',
-      materialOre: [
-        { id: 'dungeons_and_combat:raw_silver', count: 3 },
-        {
-          id: 'dungeons_and_combat:silver_ore',
-          count: 4,
-        },
-        {
-          id: 'dungeons_and_combat:silver_deepslate_ore',
-          count: 4,
-        },
-      ],
+      sulfur: 'theurgy:alchemical_sulfur_silver',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
+
+    handleRecipe(event, {
+      id: 'dungeons_and_combat_raw_silver',
+      material: 'dungeons_and_combat:raw_silver',
+      resultCount: 3,
+      sulfur: 'theurgy:alchemical_sulfur_silver',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
+
+    handleRecipe(event, {
+      id: 'dungeons_and_combat_silver_ore',
+      material: 'dungeons_and_combat:silver_ore',
+      resultCount: 4,
+      sulfur: 'theurgy:alchemical_sulfur_silver',
+      liquefaction_time: 100,
+      solvent_amount: 10,
+    });
+
+    handleRecipe(event, {
+      id: 'dungeons_and_combat_silver_deepslate_ore',
+      material: 'dungeons_and_combat:silver_deepslate_ore',
+      resultCount: 4,
       sulfur: 'theurgy:alchemical_sulfur_silver',
       liquefaction_time: 100,
       solvent_amount: 10,
@@ -482,7 +557,6 @@ ServerEvents.recipes((event) => {
     handleRecipe(event, {
       id: 'dark_metal_ingot',
       material: 'born_in_chaos_v1:dark_metal_ingot',
-      materialOre: [],
       sulfur: 'kubejs:dark_metal_ingot_sulfur',
       liquefaction_time: 100,
       solvent_amount: 15,

@@ -1,0 +1,1 @@
+execute run heroes @s catalyst 1

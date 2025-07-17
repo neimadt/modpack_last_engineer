@@ -4,6 +4,8 @@ crash-reports/
 debug.log
 latest.log
 
+.probe/
+
 # Local player settings
 usercache.json
 usernamecache.json
@@ -60,3 +62,5 @@ serverconfig/
 # OS files
 .DS_Store
 Thumbs.db
+.probe/*
+!.probe/probe-settings.json

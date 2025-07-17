@@ -1,0 +1,13 @@
+{
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:recipe_crafted",
+            "conditions": {
+                "recipe_id": "last_engineer:heroes/catalyst_ritual"
+            }
+        }
+    },
+    "rewards": {
+        "function": "last_engineer:heroes/catalyst_ritual"
+    }
+}
