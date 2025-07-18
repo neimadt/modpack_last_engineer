@@ -28,6 +28,18 @@ ServerEvents.recipes((event) => {
     .id('last_engineer:heroes/ritual/formula_vial');
 
   event.remove({ output: 'heroes:catalyst_vial' });
+
+  const ingredients = [
+    { item: 'heroes:compound_alx_vial' },
+    { item: 'minecraft:diamond' },
+    { item: 'minecraft:ghast_tear' },
+    { item: 'minecraft:netherite_ingot' },
+  ];
+
+  if (Platform.isLoaded('appflux')) {
+    ingredients.push({ item: 'appflux:insulating_resin' });
+  }
+
   event
     .custom({
       type: 'occultism:ritual',
@@ -40,12 +52,7 @@ ServerEvents.recipes((event) => {
       ritual_dummy: {
         item: 'occultism:ritual_dummy/custom_ritual',
       },
-      ingredients: [
-        { item: 'heroes:compound_alx_vial' },
-        { item: 'minecraft:diamond' },
-        { item: 'minecraft:ghast_tear' },
-        { item: 'minecraft:netherite_ingot' },
-      ],
+      ingredients: ingredients,
       result: {
         item: 'heroes:catalyst_vial',
       },
