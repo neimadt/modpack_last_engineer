@@ -1,0 +1,7 @@
+{
+    "type": "minecraft:anvil_repair",
+    "baseItem": "minecraft:trident",
+    "repairItem": {
+        "item": "minecraft:prismarine_shard"
+    }
+}

@@ -1,6 +1,8 @@
 ServerEvents.recipes((event) => {
   if (!Platform.isLoaded('forbidden_arcanus')) return;
 
+  event.remove({ id: 'forbidden_arcanus:enchanted_golden_apple' });
+
   event.remove({ id: 'forbidden_arcanus:aurum_fence_gate' });
   event
     .shaped(Item.of('forbidden_arcanus:aurum_fence_gate', 1), ['SPS', 'SPS'], {

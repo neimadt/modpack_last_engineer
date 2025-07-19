@@ -17,7 +17,7 @@ ServerEvents.recipes((event) => {
             item: 'minecraft:honeycomb',
           },
           {
-            item: 'theurgy:alchemical_sulfur_copper',
+            item: 'theurgy:alchemical_sulfur_metals_precious',
           },
           { item: 'hexerei:blood_bottle' },
         ],
@@ -27,6 +27,7 @@ ServerEvents.recipes((event) => {
           count: 1,
         },
       })
+      .replaceIngredient('minecraft:lava_bucket', 'minecraft:bucket')
       .id('last_engineer:heroes/energizing/compound_alx');
   } else {
     event
@@ -73,6 +74,7 @@ ServerEvents.recipes((event) => {
         { item: 'minecraft:wither_rose' },
         { item: 'minecraft:golden_apple' },
         { item: 'bloodmagic:reagentbinding' },
+        { item: 'minecraft:glass_bottle' },
       ],
       output: {
         item: 'heroes:compound_alx_vial',

@@ -53,6 +53,10 @@ ServerEvents.recipes((event) => {
         item: 'occultism:ritual_dummy/custom_ritual',
       },
       ingredients: ingredients,
+      entity_to_sacrifice: {
+        tag: 'forge:zombies',
+        display_name: 'ritual.occultism.sacrifice.zombies',
+      },
       result: {
         item: 'heroes:catalyst_vial',
       },

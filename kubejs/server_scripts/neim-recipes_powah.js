@@ -3,24 +3,62 @@ ServerEvents.recipes((event) => {
 
   event.remove({ output: 'powah:dielectric_paste' });
   event
-    .shapeless(Item.of('powah:dielectric_paste', 28), [
-      'mekanism:dust_coal',
-      'mekanism:dust_coal',
-      'createmetallurgy:zinc_dust',
-      'minecraft:clay_ball',
-      'minecraft:clay_ball',
-      'minecraft:lava_bucket',
-    ])
-    .id('powah:kubejs/dielectric_paste_coal');
+    .custom({
+      type: 'minecraft:crafting_shapeless',
+      ingredients: [
+        {
+          tag: 'minecraft:coals',
+        },
+        {
+          tag: 'minecraft:coals',
+        },
+        {
+          tag: 'minecraft:coals',
+        },
+        {
+          item: 'ae2:silicon',
+        },
+        {
+          item: 'ae2:silicon',
+        },
+        {
+          item: 'minecraft:lava_bucket',
+        },
+      ],
+      result: {
+        item: 'powah:dielectric_paste',
+        count: 16,
+      },
+    })
+    .id('last_engineer:powah/dielectric_paste_coal');
 
   event
-    .shapeless(Item.of('powah:dielectric_paste', 16), [
-      'mekanism:dust_charcoal',
-      'mekanism:dust_charcoal',
-      'createmetallurgy:zinc_dust',
-      'minecraft:clay_ball',
-      'minecraft:clay_ball',
-      'minecraft:lava_bucket',
-    ])
-    .id('powah:kubejs/dielectric_paste_charcoal');
+    .custom({
+      type: 'minecraft:crafting_shapeless',
+      ingredients: [
+        {
+          tag: 'minecraft:charcoal',
+        },
+        {
+          tag: 'minecraft:charcoal',
+        },
+        {
+          tag: 'minecraft:charcoal',
+        },
+        {
+          item: 'ae2:silicon',
+        },
+        {
+          item: 'ae2:silicon',
+        },
+        {
+          item: 'minecraft:lava_bucket',
+        },
+      ],
+      result: {
+        item: 'powah:dielectric_paste',
+        count: 16,
+      },
+    })
+    .id('last_engineer:powah/dielectric_paste_charcoal');
 });
