@@ -20,11 +20,16 @@ const standard_proximity_effect_2 =
 const allowedEntityDico = {
   'minecraft:villager': { chance: 15.0, tier: 'low' },
   'minecraft:pillager': { chance: 5.0, tier: 'low' },
-  'minecraft:wandering_trader': { chance: 22.0, tier: 'low' },
+  'minecraft:wandering_trader': { chance: 14.0, tier: 'low' },
   'minecraft:zombie_villager': { chance: 10.0, tier: 'low' },
-  'minecraft:witch': { chance: 32.0, tier: 'low' },
-  'minecraft:piglin': { chance: 2.5, tier: 'low' },
-  'minecraft:piglin_brute': { chance: 5.0, tier: 'mid' },
+  'minecraft:zombie': { chance: 2.0, tier: 'low' },
+  'minecraft:witch': { chance: 22.0, tier: ['low', 'low', 'mid'] },
+  'minecraft:piglin': { chance: 5, tier: 'low' },
+  'minecraft:piglin_brute': { chance: 10.0, tier: ['low', 'mid', 'mid'] },
+  'just_in_village:village_warrior': {
+    chance: 8.0,
+    tier: ['low', 'mid', 'mid'],
+  },
   'guardvillagers:guard': { chance: 20.0, tier: 'low' },
   'guardvillagers:illusioner': { chance: 25.0, tier: 'mid' },
   'takesapillage:skirmisher': { chance: 8.0, tier: 'mid' },
@@ -33,6 +38,10 @@ const allowedEntityDico = {
   'hunters_return:hunter': { chance: 10.0, tier: 'low' },
   'born_in_chaos_v1:zombie_fisherman': { chance: 10.0, tier: 'low' },
   'born_in_chaos_v1:zombie_lumberjack': { chance: 10.0, tier: 'low' },
+  'born_in_chaos_v1:zombie_bruiser': {
+    chance: 10.0,
+    tier: ['low', 'mid', 'mid'],
+  },
   'enemyexpansion:sprinter': { chance: 10.0, tier: 'low' },
   'enemyexpansion:slugger': { chance: 10.0, tier: 'mid' },
   'mutantmonsters:mutant_zombie': { chance: 85.0, tier: 'high' },
@@ -53,6 +62,57 @@ const allowedEntityDico = {
   'shifu_epic_fight_skill_recipe:banditking': {
     chance: 90.0,
     tier: 'high',
+  },
+
+  'illager_additions:shogun': { chance: 85.0, tier: 'high' },
+  'illager_additions:royal_guard': { chance: 25.0, tier: 'high' },
+  'illager_additions:samurai': {
+    chance: 15.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
+  'illager_additions:spearman': {
+    chance: 12.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
+  'illager_additions:beamloger': {
+    chance: 12.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
+  'illager_additions:cowboy': { chance: 8.0, tier: 'mid' },
+
+  'undead_revamp2:theheavy': { chance: 12.0, tier: 'mid' },
+  'undead_revamp2:bomber': { chance: 2.0, tier: 'low' },
+  'undead_revamp2:therod': { chance: 8.0, tier: 'low' },
+  'undead_revamp2:thepregnant': { chance: 8.0, tier: 'low' },
+  'undead_revamp2:thehorrors': {
+    chance: 12.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
+  'undead_revamp2:thewolf': {
+    chance: 10.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
+  'undead_revamp2:thebeartamer': {
+    chance: 10.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
+  'undead_revamp2:thesmoker': { chance: 8.0, tier: 'low' },
+  'undead_revamp2:theswarmer': { chance: 8.0, tier: 'low' },
+  'undead_revamp2:thehunter': {
+    chance: 2.0,
+    tier: ['low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'undead_revamp2:theskeeper': { chance: 12.0, tier: 'mid' },
+
+  'eeeabsmobs:corpse': { chance: 2.0, tier: 'low' },
+  'eeeabsmobs:corpse_villager': { chance: 10.0, tier: 'low' },
+  'eeeabsmobs:corpse_warlock': { chance: 10.0, tier: 'mid' },
+};
+
+const allowedEntityFromMod = {
+  'the_pillager_legion:': {
+    chance: 5.0,
+    tier: ['low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
   },
 };
 
@@ -118,6 +178,16 @@ function getRandomInt(min, max) {
 }
 
 function getRandomPower(tier) {
+  if (!tier) return null;
+
+  if (typeof tier !== 'string') {
+    if (Array.isArray(tier)) {
+      tier = tier[getRandomInt(0, tier.length - 1)];
+    } else {
+      tier = 'low';
+    }
+  }
+
   const chance_1 = getRandomInt(1, 100);
   const chance_2 = getRandomInt(1, 100);
   const chance = Math.round((chance_1 + chance_2) / 2);
@@ -228,7 +298,16 @@ EntityEvents.spawned((event) => {
 
   const entityFound = allowedEntityDico[entity.type];
 
-  if (!entityFound) return;
+  if (!entityFound) {
+    let modId = entity.type.split(':');
+    modId = modId && modId.length > 0 ? modId[0] : null;
+
+    if (modId) {
+      entityFound = allowedEntityFromMod[`${modId}:`];
+
+      if (!entityFound) return;
+    }
+  }
 
   const { chance: applyPowerChance, tier } = entityFound;
 
