@@ -13,7 +13,7 @@ ServerEvents.recipes((event) => {
 
   event.remove({ id: 'forbidden_arcanus:aurum_fence' });
   event
-    .shaped(Item.of('forbidden_arcanus:aurum_fence', 1), ['PSP', 'PSP'], {
+    .shaped(Item.of('forbidden_arcanus:aurum_fence', 3), ['PSP', 'PSP'], {
       P: 'forbidden_arcanus:aurum_planks',
       S: '#forge:sticks/wood',
     })

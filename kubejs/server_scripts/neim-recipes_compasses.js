@@ -5,12 +5,13 @@ ServerEvents.recipes((event) => {
       .custom({
         type: 'create:mechanical_crafting',
         acceptMirrored: true,
-        pattern: ['WEW', 'GLG', 'S S'],
+        pattern: [' B ', 'WEW', 'GLG', 'S S'],
         key: {
+          B: { item: 'hexerei:blood_bottle' },
           W: { tag: 'minecraft:logs' },
+          E: { tag: 'saplings' },
           L: { item: 'minecraft:compass' },
           G: { item: 'minecraft:lime_dye' },
-          E: { item: 'hexerei:blood_bottle' },
           S: { tag: 'forge:plates/brass' },
         },
         result: { item: 'naturescompass:naturescompass' },
@@ -24,11 +25,12 @@ ServerEvents.recipes((event) => {
       .custom({
         type: 'create:mechanical_crafting',
         acceptMirrored: true,
-        pattern: ['GGG', 'CLC', 'S S'],
+        pattern: [' B ', 'GGG', 'LCL', 'S S'],
         key: {
+          B: { item: 'hexerei:blood_bottle' },
           G: { item: 'minecraft:glowstone_dust' },
           C: { item: 'minecraft:compass' },
-          L: { item: 'dungeonsdelight:stained_scrap' },
+          L: { item: 'minecraft:ender_eye' },
           S: { tag: 'forge:plates/brass' },
         },
         result: { item: 'structurecompass:structure_compass' },
