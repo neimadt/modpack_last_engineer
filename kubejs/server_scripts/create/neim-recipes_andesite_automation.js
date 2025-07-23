@@ -126,8 +126,8 @@ ServerEvents.recipes((event) => {
           item: 'minecraft:cobblestone',
         },
         {
-          amount: 200,
-          fluid: 'minecraft:water',
+          amount: 100,
+          fluid: 'theurgy:sal_ammoniac',
         },
       ],
       results: [

@@ -18,4 +18,29 @@ ServerEvents.recipes((event) => {
       S: '#forge:sticks/wood',
     })
     .id('last_engineer:forbidden_arcanus/aurum_fence');
+
+  event
+    .smelting('minecraft:charcoal', 'forbidden_arcanus:aurum_log')
+    .id('last_engineer:forbidden_arcanus/charcoal_from_aurum_log');
+
+  event
+    .custom({
+      type: 'create:item_application',
+      ingredients: [
+        {
+          item: 'forbidden_arcanus:stripped_aurum_log',
+        },
+        {
+          item: 'create:andesite_alloy',
+        },
+      ],
+      results: [
+        {
+          item: 'create:andesite_casing',
+        },
+      ],
+    })
+    .id(
+      'last_engineer:forbidden_arcanus/stripped_aurum_log_to_andesite_casing'
+    );
 });
