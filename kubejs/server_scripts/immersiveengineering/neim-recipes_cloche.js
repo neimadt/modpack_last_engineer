@@ -36,5 +36,19 @@ ServerEvents.recipes((event) => {
       .id(
         'last_engineer:immersiveengineering/cloche/sugar_cane_with_soul_snad'
       );
+
+    event
+      .custom({
+        type: 'immersiveengineering:cloche',
+        input: { item: 'occultism:datura_seeds' },
+        render: { type: 'crop', block: 'occultism:datura' },
+        results: [
+          { item: 'occultism:datura' },
+          { item: 'occultism:datura_seeds' },
+        ],
+        soil: { item: 'minecraft:dirt' },
+        time: 640,
+      })
+      .id('last_engineer:immersiveengineering/cloche/datura_with_dirt');
   }
 });

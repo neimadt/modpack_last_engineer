@@ -43,4 +43,42 @@ ServerEvents.recipes((event) => {
     .id(
       'last_engineer:forbidden_arcanus/stripped_aurum_log_to_andesite_casing'
     );
+
+  event
+    .custom({
+      type: 'create:item_application',
+      ingredients: [
+        {
+          item: 'forbidden_arcanus:stripped_aurum_log',
+        },
+        {
+          tag: 'forge:ingots/brass',
+        },
+      ],
+      results: [
+        {
+          item: 'create:brass_casing',
+        },
+      ],
+    })
+    .id('last_engineer:forbidden_arcanus/stripped_aurum_log_to_brass_casing');
+
+  event
+    .custom({
+      type: 'create:item_application',
+      ingredients: [
+        {
+          item: 'forbidden_arcanus:stripped_aurum_log',
+        },
+        {
+          tag: 'forge:ingots/copper',
+        },
+      ],
+      results: [
+        {
+          item: 'create:copper_casing',
+        },
+      ],
+    })
+    .id('last_engineer:forbidden_arcanus/stripped_aurum_log_to_copper_casing');
 });

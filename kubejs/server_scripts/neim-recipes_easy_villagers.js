@@ -11,7 +11,7 @@ ServerEvents.recipes((event) => {
         Q: { item: 'ae2:quartz_glass' },
         P: { item: 'create:precision_mechanism' },
         M: { tag: 'forge:plates/brass' },
-        B: { item: 'bloodmagic:reagentbinding' },
+        B: { item: 'bloodmagic:reagentvoid' },
         R: { item: 'minecraft:hay_block' },
       },
       result: { item: 'easy_villagers:breeder' },
@@ -62,7 +62,7 @@ ServerEvents.recipes((event) => {
         Q: { item: 'ae2:quartz_glass' },
         P: { item: 'create:precision_mechanism' },
         M: { tag: 'forge:plates/brass' },
-        B: { item: 'bloodmagic:reagentsuppression' },
+        B: { item: 'bloodmagic:reagentbinding' },
         R: { item: 'minecraft:emerald_block' }, // Represents automated commerce power
       },
       result: { item: 'easy_villagers:auto_trader' },
@@ -79,7 +79,7 @@ ServerEvents.recipes((event) => {
         Q: { item: 'ae2:quartz_glass' },
         P: { item: 'create:precision_mechanism' },
         M: { tag: 'forge:plates/brass' },
-        B: { item: 'bloodmagic:reagentvoid' },
+        B: { item: 'bloodmagic:reagentbinding' },
         R: { item: 'minecraft:rotten_flesh' }, // Symbolizes healing/cure
       },
       result: { item: 'easy_villagers:converter' },

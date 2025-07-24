@@ -3,6 +3,7 @@ const handleRecipe = (event, args) => {
     id,
     material,
     resultCount,
+    incubationResult,
     sulfur,
     liquefaction_time,
     solvent_amount,
@@ -29,25 +30,27 @@ const handleRecipe = (event, args) => {
     })
     .id(`last_engineer:theurgy/liquefaction/${id}`);
 
-  event
-    .custom({
-      type: 'theurgy:incubation',
-      incubation_time: 100,
-      mercury: {
-        item: 'theurgy:mercury_shard',
-      },
-      result: {
-        count: 1,
-        item: material,
-      },
-      salt: {
-        item: 'theurgy:alchemical_salt_mineral',
-      },
-      sulfur: {
-        item: sulfur,
-      },
-    })
-    .id(`last_engineer:theurgy/incubation/${id}`);
+  if (incubationResult !== false) {
+    event
+      .custom({
+        type: 'theurgy:incubation',
+        incubation_time: 100,
+        mercury: {
+          item: 'theurgy:mercury_shard',
+        },
+        result: {
+          count: 1,
+          item: incubationResult || material,
+        },
+        salt: {
+          item: 'theurgy:alchemical_salt_mineral',
+        },
+        sulfur: {
+          item: sulfur,
+        },
+      })
+      .id(`last_engineer:theurgy/incubation/${id}`);
+  }
 
   if (reformationSource) {
     event
@@ -144,6 +147,7 @@ ServerEvents.recipes((event) => {
   handleRecipe(event, {
     id: 'arcane_crystal_ore',
     material: 'forbidden_arcanus:arcane_crystal_ore',
+    incubationResult: false,
     resultCount: 4,
     sulfur: 'kubejs:arcane_crystal_sulfur',
     liquefaction_time: 100,
@@ -153,6 +157,7 @@ ServerEvents.recipes((event) => {
   handleRecipe(event, {
     id: 'deepslate_arcane_crystal_ore',
     material: 'forbidden_arcanus:deepslate_arcane_crystal_ore',
+    incubationResult: false,
     resultCount: 4,
     sulfur: 'kubejs:arcane_crystal_sulfur',
     liquefaction_time: 100,
@@ -502,6 +507,7 @@ ServerEvents.recipes((event) => {
     handleRecipe(event, {
       id: 'dungeons_and_combat_silver',
       material: 'dungeons_and_combat:silver_ingot',
+      incubationResult: false,
       sulfur: 'theurgy:alchemical_sulfur_silver',
       liquefaction_time: 100,
       solvent_amount: 10,
@@ -510,6 +516,7 @@ ServerEvents.recipes((event) => {
     handleRecipe(event, {
       id: 'dungeons_and_combat_raw_silver',
       material: 'dungeons_and_combat:raw_silver',
+      incubationResult: false,
       resultCount: 3,
       sulfur: 'theurgy:alchemical_sulfur_silver',
       liquefaction_time: 100,
@@ -519,6 +526,7 @@ ServerEvents.recipes((event) => {
     handleRecipe(event, {
       id: 'dungeons_and_combat_silver_ore',
       material: 'dungeons_and_combat:silver_ore',
+      incubationResult: false,
       resultCount: 4,
       sulfur: 'theurgy:alchemical_sulfur_silver',
       liquefaction_time: 100,
@@ -528,6 +536,7 @@ ServerEvents.recipes((event) => {
     handleRecipe(event, {
       id: 'dungeons_and_combat_silver_deepslate_ore',
       material: 'dungeons_and_combat:silver_deepslate_ore',
+      incubationResult: false,
       resultCount: 4,
       sulfur: 'theurgy:alchemical_sulfur_silver',
       liquefaction_time: 100,

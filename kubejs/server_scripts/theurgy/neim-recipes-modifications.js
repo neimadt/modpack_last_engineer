@@ -320,4 +320,29 @@ ServerEvents.recipes((event) => {
     .id(
       'last_engineer:theurgy/incubation/ingots_lead_from_alchemical_sulfur_lead'
     );
+
+  event.remove({
+    id: 'theurgy:incubation/ingots_silver_from_alchemical_sulfur_silver',
+  });
+  event
+    .custom({
+      type: 'theurgy:incubation',
+      incubation_time: 100,
+      mercury: {
+        item: 'theurgy:mercury_shard',
+      },
+      result: {
+        count: 1,
+        item: 'immersiveengineering:ingot_silver',
+      },
+      salt: {
+        item: 'theurgy:alchemical_salt_mineral',
+      },
+      sulfur: {
+        item: 'theurgy:alchemical_sulfur_silver',
+      },
+    })
+    .id(
+      'last_engineer:theurgy/incubation/ingots_silver_from_alchemical_sulfur_silver'
+    );
 });
