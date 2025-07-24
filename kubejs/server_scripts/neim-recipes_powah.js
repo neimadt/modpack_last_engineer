@@ -30,35 +30,5 @@ ServerEvents.recipes((event) => {
         count: 16,
       },
     })
-    .id('last_engineer:powah/dielectric_paste_coal');
-
-  event
-    .custom({
-      type: 'minecraft:crafting_shapeless',
-      ingredients: [
-        {
-          tag: 'minecraft:charcoal',
-        },
-        {
-          tag: 'minecraft:charcoal',
-        },
-        {
-          tag: 'minecraft:charcoal',
-        },
-        {
-          item: 'ae2:silicon',
-        },
-        {
-          item: 'ae2:silicon',
-        },
-        {
-          item: 'minecraft:lava_bucket',
-        },
-      ],
-      result: {
-        item: 'powah:dielectric_paste',
-        count: 16,
-      },
-    })
-    .id('last_engineer:powah/dielectric_paste_charcoal');
+    .id('last_engineer:powah/dielectric_paste_coals');
 });

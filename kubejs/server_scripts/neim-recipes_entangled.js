@@ -12,8 +12,8 @@ ServerEvents.recipes((event) => {
         O: { item: 'forbidden_arcanus:obsidian_ingot' },
         S: { item: 'create:brass_sheet' },
         B: { item: 'hexerei:blood_bottle' },
-        A: { item: 'cataclysm:abyss_eye' },
-        H: { tag: 'iceandfire:mob_skulls' },
+        A: { item: 'immersiveengineering:graphite_electrode' },
+        H: { item: 'create:precision_mechanism' },
       },
       result: { item: 'entangled:block' },
     })

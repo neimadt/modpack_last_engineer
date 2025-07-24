@@ -94,6 +94,11 @@ const itemsToBeHidden = [
     removeRecipe: true,
     verify: () => Platform.isLoaded('rustic_engineer'),
   },
+  {
+    id: 'ironfurnaces:augment_generator',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('ironfurnaces'),
+  },
 ];
 
 ServerEvents.tags('item', (event) => {
