@@ -30,11 +30,6 @@ const itemsToBeHidden = [
     verify: () => Platform.isLoaded('create_sa'),
   },
   {
-    id: 'easy_villagers:iron_farm',
-    removeRecipe: true,
-    verify: () => Platform.isLoaded('easy_villagers'),
-  },
-  {
     id: 'easy_villagers:farmer',
     removeRecipe: true,
     verify: () => Platform.isLoaded('easy_villagers'),

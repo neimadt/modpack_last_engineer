@@ -85,4 +85,20 @@ ServerEvents.recipes((event) => {
       result: { item: 'easy_villagers:converter' },
     })
     .id('last_engineer:easy_villagers/mechanical_crafting/converter');
+
+  event.remove({ output: 'easy_villagers:iron_farm' });
+  event
+    .custom({
+      type: 'create:mechanical_crafting',
+      pattern: ['QQQ', 'QBQ', 'MRM', ' P '],
+      key: {
+        Q: { item: 'ae2:quartz_glass' },
+        P: { item: 'create:precision_mechanism' },
+        M: { tag: 'forge:plates/obsidian' },
+        B: { item: 'bloodmagic:reagentbinding' },
+        R: { item: 'powah:ender_core' }, // Symbolizes power
+      },
+      result: { item: 'easy_villagers:iron_farm' },
+    })
+    .id('last_engineer:easy_villagers/mechanical_crafting/iron_farm');
 });

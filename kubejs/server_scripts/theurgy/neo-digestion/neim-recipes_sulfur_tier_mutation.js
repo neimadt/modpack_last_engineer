@@ -16,7 +16,7 @@ ServerEvents.recipes((event) => {
               item: `theurgy:alchemical_sulfur_${type}_${tier.high}`,
             },
             {
-              item: 'theurgy:purified_gold',
+              tag: 'theurgy:alchemical_salts',
             },
             { item: 'theurgy:sal_ammoniac_crystal' },
           ],

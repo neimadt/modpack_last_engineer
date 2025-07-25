@@ -21,6 +21,10 @@ ServerEvents.recipes((event) => {
         { item: 'forbidden_arcanus:dark_rune' },
         { item: 'minecraft:wither_rose' },
       ],
+      entity_to_sacrifice: {
+        tag: 'forge:zombies',
+        display_name: 'ritual.occultism.sacrifice.zombies',
+      },
       result: {
         item: 'heroes:formula_vial',
       },
