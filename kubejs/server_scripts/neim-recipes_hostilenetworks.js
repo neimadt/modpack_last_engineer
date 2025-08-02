@@ -39,15 +39,52 @@ ServerEvents.recipes((event) => {
   // --- Loot Fabricator ---
   event.remove({ output: 'hostilenetworks:loot_fabricator' });
   event
-    .shaped('hostilenetworks:loot_fabricator', ['LRL', 'BCB', 'NDN'], {
-      L: 'bloodmagic:reagentbinding',
-      R: 'bloodmagic:reagentsuppression',
-      B: 'ae2:engineering_processor',
-      C: 'integrateddynamics:variable_transformer_input',
-      N: 'minecraft:netherite_scrap',
-      D: 'forbidden_arcanus:dark_matter',
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      pattern: ['S S', 'EOE', 'LDL'],
+      key: {
+        S: {
+          item: 'minecraft:netherite_scrap',
+        },
+        E: {
+          item: 'ae2:engineering_processor',
+        },
+        O: {
+          item: 'forbidden_arcanus:obsidian_ingot',
+        },
+        L: {
+          item: 'ae2:logic_processor',
+        },
+        D: {
+          item: 'forbidden_arcanus:dark_matter',
+        },
+      },
+      result: {
+        item: 'hostilenetworks:loot_fabricator',
+      },
     })
     .id('last_engineer:hostilenetworks/loot_fabricator');
+
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      pattern: ['DOD', 'OLO', 'DOD'],
+      key: {
+        D: {
+          item: 'minecraft:diamond_block',
+        },
+        O: {
+          item: 'hostilenetworks:overworld_prediction',
+        },
+        L: {
+          item: 'minecraft:sea_lantern',
+        },
+      },
+      result: {
+        item: 'minecraft:heart_of_the_sea',
+      },
+    })
+    .id('last_engineer:hostilenetworks/heart_of_the_sea');
 
   // Future expansion: add custom alchemy table recipes or occultism spirit fire transformations
 });

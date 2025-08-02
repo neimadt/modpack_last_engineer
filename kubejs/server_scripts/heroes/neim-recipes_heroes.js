@@ -21,7 +21,7 @@ ServerEvents.recipes((event) => {
           },
           { item: 'hexerei:blood_bottle' },
         ],
-        energy: 50000,
+        energy: 10000000,
         result: {
           item: 'heroes:compound_alx',
           count: 1,

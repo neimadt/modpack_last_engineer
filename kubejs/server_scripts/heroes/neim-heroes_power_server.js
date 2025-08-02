@@ -49,7 +49,10 @@ const allowedEntityDico = {
   'kenjiscombatforms:exiled_sensei': { chance: 12.0, tier: 'high' },
   'kenjiscombatforms:exiled_devil': { chance: 17.0, tier: 'high' },
   'kenjiscombatforms:ability_trader': { chance: 18.0, tier: 'mid' },
-  'shifu_epic_fight_skill_recipe:martialbandit': { chance: 15.0, tier: 'mid' },
+  'shifu_epic_fight_skill_recipe:martialbandit': {
+    chance: 15.0,
+    tier: 'mid',
+  },
   'shifu_epic_fight_skill_recipe:rogue': { chance: 15.0, tier: 'mid' },
   'shifu_epic_fight_skill_recipe:martialbanditleader': {
     chance: 75.0,
@@ -261,128 +264,130 @@ function getRandomPower(tier) {
   return null; // Fallback if no powers were assigned
 }
 
-ServerEvents.loaded((event) => {
-  const allPowers = [
-    f_TierPowers,
-    c_TierPowers,
-    b_TierPowers,
-    a_TierPowers,
-    s_TierPowers,
-    ss_TierPowers,
-  ];
+if (Platform.isLoaded('heroes')) {
+  ServerEvents.loaded((event) => {
+    const allPowers = [
+      f_TierPowers,
+      c_TierPowers,
+      b_TierPowers,
+      a_TierPowers,
+      s_TierPowers,
+      ss_TierPowers,
+    ];
 
-  for (const powers of allPowers) {
-    for (const power of powers) {
-      event.server.runCommandSilent(
-        `execute run scoreboard objectives add Powers.${power} dummy`
-      );
-      event.server.runCommandSilent(
-        `execute run scoreboard objectives add Powers.Intuitive.${power} dummy`
-      );
-    }
-  }
-
-  console.log('NBC Heroes: Scoreboard objectives initialized.');
-});
-
-// When a mob spawns, apply the NBC Heroes power
-EntityEvents.spawned((event) => {
-  const entity = event.entity;
-
-  if (
-    entity.persistentData['HeroesPowerGiven'] ||
-    entity.persistentData['NoHeroesPower']
-  ) {
-    return;
-  }
-
-  const entityFound = allowedEntityDico[entity.type];
-
-  if (!entityFound) {
-    let modId = entity.type.split(':');
-    modId = modId && modId.length > 0 ? modId[0] : null;
-
-    if (modId) {
-      entityFound = allowedEntityFromMod[`${modId}:`];
-
-      if (!entityFound) return;
-    }
-  }
-
-  const { chance: applyPowerChance, tier } = entityFound;
-
-  if (!(applyPowerChance > 0)) {
-    return;
-  }
-
-  const chance = Math.random() * 100;
-
-  const applyPower = chance < applyPowerChance;
-
-  if (!applyPower) {
-    entity.persistentData.put('NoHeroesPower', true);
-    return;
-  }
-
-  let ability = getRandomPower(tier);
-
-  if (!ability) {
-    entity.persistentData.put('NoHeroesPower', true);
-    return;
-  }
-
-  event.server.scheduleInTicks(8, () => {
-    entity.persistentData.put('HeroesPowerGiven', ability);
-
-    let command = '',
-      commandResult;
-
-    const powers =
-      ability === 'Ocular_Psychogenesis'
-        ? ['Ocular_Psychogenesis_Control', 'Ocular_Psychogenesis_Emission']
-        : [ability];
-
-    const username = entity.uuid.toString();
-    const scoreboard = entity.server.getScoreboard();
-
-    for (const power of powers) {
-      const scoreboardObjective = scoreboard.getObjective('Powers.' + power);
-
-      if (!scoreboardObjective) continue;
-
-      command = `execute run scoreboard players set ${username} Powers.${power} 1`;
-      commandResult = entity.server.runCommandSilent(command);
+    for (const powers of allPowers) {
+      for (const power of powers) {
+        event.server.runCommandSilent(
+          `execute run scoreboard objectives add Powers.${power} dummy`
+        );
+        event.server.runCommandSilent(
+          `execute run scoreboard objectives add Powers.Intuitive.${power} dummy`
+        );
+      }
     }
 
-    entity.addTag('Heroes.Enabled');
-
-    entity.customName =
-      'Powered' +
-      (entity.name && entity.name.string ? ` ${entity.name.string}` : '');
-    entity.setCustomNameVisible(false); // Hide name from players
+    console.log('NBC Heroes: Scoreboard objectives initialized.');
   });
-});
 
-EntityEvents.death((event) => {
-  const entity = event.entity;
+  // When a mob spawns, apply the NBC Heroes power
+  EntityEvents.spawned((event) => {
+    const entity = event.entity;
 
-  const ability = entity.persistentData['HeroesPowerGiven'];
+    if (
+      entity.persistentData['HeroesPowerGiven'] ||
+      entity.persistentData['NoHeroesPower']
+    ) {
+      return;
+    }
 
-  if (!ability) return;
+    const entityFound = allowedEntityDico[entity.type];
 
-  const brainBlock = entity.block.createEntity('minecraft:item');
+    if (!entityFound) {
+      let modId = entity.type.split(':');
+      modId = modId && modId.length > 0 ? modId[0] : null;
 
-  const entityName =
-    (entity?.name?.string ? entity.name.string : entity?.name ?? null) ??
-    'Someone';
+      if (modId) {
+        entityFound = allowedEntityFromMod[`${modId}:`];
 
-  const brain = Item.of('heroes:brain', `{Ability_User: 1b}`).withName(
-    Text.yellow(entityName + "'s Brain").italic(false)
-  );
+        if (!entityFound) return;
+      }
+    }
 
-  brain.orCreateTag.merge(`{Powers.${ability}: 1b}`);
+    const { chance: applyPowerChance, tier } = entityFound;
 
-  brainBlock.item = brain;
+    if (!(applyPowerChance > 0)) {
+      return;
+    }
 
-  brainBlock.spawn();
-});
+    const chance = Math.random() * 100;
+
+    const applyPower = chance < applyPowerChance;
+
+    if (!applyPower) {
+      entity.persistentData.put('NoHeroesPower', true);
+      return;
+    }
+
+    let ability = getRandomPower(tier);
+
+    if (!ability) {
+      entity.persistentData.put('NoHeroesPower', true);
+      return;
+    }
+
+    event.server.scheduleInTicks(8, () => {
+      entity.persistentData.put('HeroesPowerGiven', ability);
+
+      let command = '',
+        commandResult;
+
+      const powers =
+        ability === 'Ocular_Psychogenesis'
+          ? ['Ocular_Psychogenesis_Control', 'Ocular_Psychogenesis_Emission']
+          : [ability];
+
+      const username = entity.uuid.toString();
+      const scoreboard = entity.server.getScoreboard();
+
+      for (const power of powers) {
+        const scoreboardObjective = scoreboard.getObjective('Powers.' + power);
+
+        if (!scoreboardObjective) continue;
+
+        command = `execute run scoreboard players set ${username} Powers.${power} 1`;
+        commandResult = entity.server.runCommandSilent(command);
+      }
+
+      entity.addTag('Heroes.Enabled');
+
+      entity.customName =
+        'Powered' +
+        (entity.name && entity.name.string ? ` ${entity.name.string}` : '');
+      entity.setCustomNameVisible(false); // Hide name from players
+    });
+  });
+
+  EntityEvents.death((event) => {
+    const entity = event.entity;
+
+    const ability = entity.persistentData['HeroesPowerGiven'];
+
+    if (!ability) return;
+
+    const brainBlock = entity.block.createEntity('minecraft:item');
+
+    const entityName =
+      (entity?.name?.string ? entity.name.string : entity?.name ?? null) ??
+      'Someone';
+
+    const brain = Item.of('heroes:brain', `{Ability_User: 1b}`).withName(
+      Text.yellow(entityName + "'s Brain").italic(false)
+    );
+
+    brain.orCreateTag.merge(`{Powers.${ability}: 1b}`);
+
+    brainBlock.item = brain;
+
+    brainBlock.spawn();
+  });
+}

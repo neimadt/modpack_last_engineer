@@ -1,0 +1,26 @@
+{
+  "parent": "nenufars_weapons:custom/sharkgreatsword",
+  "textures": {
+    "0": "nenufars_weapons:block/sharktoothgreatsword",
+    "particle": "nenufars_weapons:item/sharktooth_greatsword"
+  },
+  "display": {
+    "head": {
+      "rotation": [
+        90,
+        -40,
+        90
+      ],
+      "translation": [
+        6,
+        10.5,
+        8.5
+      ],
+      "scale": [
+        1.25,
+        1.25,
+        1.25
+      ]
+    }
+  }
+}

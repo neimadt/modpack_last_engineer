@@ -246,4 +246,22 @@ ServerEvents.recipes((event) => {
       show_notification: true,
     })
     .id('last_engineer:ae2/quartz_fiber');
+
+  event
+    .custom({
+      type: 'minecraft:crafting_shapeless',
+      category: 'misc',
+      ingredients: [
+        {
+          item: 'immersiveengineering:hemp_fabric',
+        },
+        {
+          item: 'ae2:fluix_glass_cable',
+        },
+      ],
+      result: {
+        item: 'ae2:fluix_covered_cable',
+      },
+    })
+    .id('last_engineer:ae2/fluix_covered_cable');
 });
