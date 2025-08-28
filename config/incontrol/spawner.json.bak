@@ -1,0 +1,91 @@
+[
+    {
+        "hostile": true,
+        "phase": "days_1_to_3",
+        "persecond": 0.1,
+        "attempts": 5,
+        "amount": {
+            "minimum": 1,
+            "maximum": 2
+        },
+        "conditions": {
+            "dimension": "minecraft:overworld",
+            "mindist": 50,
+            "maxdist": 120,
+            "minheight": -64,
+            "maxheight": 256,
+            "maxthis": 15
+        }
+    },
+    {
+        "hostile": true,
+        "phase": "days_4_to_6",
+        "persecond": 0.3,
+        "attempts": 10,
+        "amount": {
+            "minimum": 1,
+            "maximum": 3
+        },
+        "conditions": {
+            "dimension": "minecraft:overworld",
+            "mindist": 40,
+            "maxdist": 100,
+            "minheight": -64,
+            "maxheight": 256,
+            "maxthis": 25
+        }
+    },
+    {
+        "hostile": true,
+        "phase": "days_7_to_9",
+        "persecond": 0.4,
+        "attempts": 15,
+        "amount": {
+            "minimum": 2,
+            "maximum": 4
+        },
+        "conditions": {
+            "dimension": "minecraft:overworld",
+            "mindist": 30,
+            "maxdist": 80,
+            "minheight": -64,
+            "maxheight": 256,
+            "maxthis": 35
+        }
+    },
+    {
+        "hostile": true,
+        "phase": "days_10_to_infinity",
+        "persecond": 0.6,
+        "attempts": 20,
+        "amount": {
+            "minimum": 2,
+            "maximum": 5
+        },
+        "conditions": {
+            "dimension": "minecraft:overworld",
+            "mindist": 25,
+            "maxdist": 70,
+            "minheight": -64,
+            "maxheight": 256,
+            "maxthis": 50
+        }
+    },
+    {
+        "hostile": true,
+        "persecond": 0.05,
+        "attempts": 30,
+        "amount": {
+            "minimum": 1,
+            "maximum": 1
+        },
+        "conditions": {
+            "dimension": "minecraft:overworld",
+            "mindist": 20,
+            "maxdist": 60,
+            "minheight": 10,
+            "maxheight": 200,
+            "maxthis": 5
+        }
+    }
+]

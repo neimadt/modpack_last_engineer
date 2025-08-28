@@ -27,10 +27,6 @@ if (Platform.isLoaded('heroes')) {
     if (result > 0) {
       player.tell('Stockpile Energy: ' + result + '');
       // player.tell(`Your Stamina Max: ${result}`);
-    } else if (result !== 0) {
-      player.tell('Failed to retrieve Stockpile value.');
-    } else {
-      player.tell('No powers found.');
     }
   });
 }

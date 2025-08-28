@@ -96,4 +96,33 @@ ServerEvents.recipes((event) => {
       C: 'pneumaticcraft:capacitor',
     })
     .id('last_engineer:heroes/injector');
+
+  event.remove({ output: 'heroes:erasure_pill' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      pattern: [' X ', 'iIT', ' P '],
+      key: {
+        i: {
+          item: 'minecraft:fermented_spider_eye',
+        },
+        P: {
+          item: 'minecraft:magma_cream',
+        },
+        I: {
+          item: 'minecraft:sculk',
+        },
+        X: {
+          item: 'minecraft:ghast_tear',
+        },
+        T: {
+          item: 'minecraft:phantom_membrane',
+        },
+      },
+      result: {
+        item: 'heroes:erasure_pill',
+        count: 1,
+      },
+    })
+    .id('last_engineer:heroes/erasure_pill');
 });

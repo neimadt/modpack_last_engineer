@@ -12,7 +12,7 @@ ServerEvents.recipes((event) => {
         O: { item: 'forbidden_arcanus:obsidian_ingot' },
         S: { item: 'create:brass_sheet' },
         B: { item: 'hexerei:blood_bottle' },
-        A: { item: 'immersiveengineering:graphite_electrode' },
+        A: { item: 'ae2:engineering_processor' },
         H: { item: 'create:precision_mechanism' },
       },
       result: { item: 'entangled:block' },

@@ -21,34 +21,85 @@ const allowedEntityDico = {
   'minecraft:villager': { chance: 15.0, tier: 'low' },
   'minecraft:pillager': { chance: 5.0, tier: 'low' },
   'minecraft:wandering_trader': { chance: 14.0, tier: 'low' },
-  'minecraft:zombie_villager': { chance: 10.0, tier: 'low' },
-  'minecraft:zombie': { chance: 2.0, tier: 'low' },
-  'minecraft:witch': { chance: 22.0, tier: ['low', 'low', 'mid'] },
-  'minecraft:piglin': { chance: 5, tier: 'low' },
-  'minecraft:piglin_brute': { chance: 10.0, tier: ['low', 'mid', 'mid'] },
+  'minecraft:zombie_villager': {
+    chance: 10.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'minecraft:zombie': {
+    chance: 2.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'minecraft:witch': {
+    chance: 22.0,
+    tier: ['low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'minecraft:piglin': {
+    chance: 5,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid'],
+  },
+  'minecraft:piglin_brute': {
+    chance: 10.0,
+    tier: ['low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
   'just_in_village:village_warrior': {
     chance: 8.0,
-    tier: ['low', 'mid', 'mid'],
+    tier: ['low', 'low', 'low', 'mid', 'mid', 'high'],
   },
-  'guardvillagers:guard': { chance: 20.0, tier: 'low' },
-  'guardvillagers:illusioner': { chance: 25.0, tier: 'mid' },
-  'takesapillage:skirmisher': { chance: 8.0, tier: 'mid' },
-  'takesapillage:legioner': { chance: 8.0, tier: 'mid' },
-  'takesapillage:archer': { chance: 7.5, tier: 'low' },
-  'hunters_return:hunter': { chance: 10.0, tier: 'low' },
-  'born_in_chaos_v1:zombie_fisherman': { chance: 10.0, tier: 'low' },
-  'born_in_chaos_v1:zombie_lumberjack': { chance: 10.0, tier: 'low' },
+  'guardvillagers:guard': {
+    chance: 20.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'guardvillagers:illusioner': {
+    chance: 25.0,
+    tier: ['mid', 'mid', 'mid', 'mid', 'mid', 'mid', 'high'],
+  },
+  'takesapillage:skirmisher': {
+    chance: 8.0,
+    tier: ['mid', 'mid', 'mid', 'mid', 'mid', 'mid', 'high'],
+  },
+  'takesapillage:legioner': {
+    chance: 8.0,
+    tier: ['mid', 'mid', 'mid', 'mid', 'mid', 'mid', 'high'],
+  },
+  'takesapillage:archer': {
+    chance: 7.5,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'hunters_return:hunter': {
+    chance: 10.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'born_in_chaos_v1:zombie_fisherman': {
+    chance: 10.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'born_in_chaos_v1:zombie_lumberjack': {
+    chance: 10.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
   'born_in_chaos_v1:zombie_bruiser': {
     chance: 10.0,
-    tier: ['low', 'mid', 'mid'],
+    tier: ['low', 'mid', 'mid', 'mid', 'mid', 'high'],
   },
-  'enemyexpansion:sprinter': { chance: 10.0, tier: 'low' },
-  'enemyexpansion:slugger': { chance: 10.0, tier: 'mid' },
+  'enemyexpansion:sprinter': {
+    chance: 10.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'enemyexpansion:slugger': {
+    chance: 10.0,
+    tier: ['mid', 'mid', 'mid', 'mid', 'high'],
+  },
   'mutantmonsters:mutant_zombie': { chance: 85.0, tier: 'high' },
-  'kenjiscombatforms:undead_sensei': { chance: 18.0, tier: 'mid' },
+  'kenjiscombatforms:undead_sensei': {
+    chance: 18.0,
+    tier: ['mid', 'mid', 'mid', 'mid', 'high'],
+  },
   'kenjiscombatforms:exiled_sensei': { chance: 12.0, tier: 'high' },
   'kenjiscombatforms:exiled_devil': { chance: 17.0, tier: 'high' },
-  'kenjiscombatforms:ability_trader': { chance: 18.0, tier: 'mid' },
+  'kenjiscombatforms:ability_trader': {
+    chance: 18.0,
+    tier: ['mid', 'mid', 'mid', 'mid', 'high'],
+  },
   'shifu_epic_fight_skill_recipe:martialbandit': {
     chance: 15.0,
     tier: 'mid',
@@ -99,17 +150,35 @@ const allowedEntityDico = {
     chance: 10.0,
     tier: ['mid', 'mid', 'mid', 'high'],
   },
-  'undead_revamp2:thesmoker': { chance: 8.0, tier: 'low' },
-  'undead_revamp2:theswarmer': { chance: 8.0, tier: 'low' },
+  'undead_revamp2:thesmoker': {
+    chance: 8.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'undead_revamp2:theswarmer': {
+    chance: 8.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
   'undead_revamp2:thehunter': {
     chance: 2.0,
     tier: ['low', 'low', 'low', 'mid', 'mid', 'high'],
   },
-  'undead_revamp2:theskeeper': { chance: 12.0, tier: 'mid' },
+  'undead_revamp2:theskeeper': {
+    chance: 12.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
 
-  'eeeabsmobs:corpse': { chance: 2.0, tier: 'low' },
-  'eeeabsmobs:corpse_villager': { chance: 10.0, tier: 'low' },
-  'eeeabsmobs:corpse_warlock': { chance: 10.0, tier: 'mid' },
+  'eeeabsmobs:corpse': {
+    chance: 2.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'eeeabsmobs:corpse_villager': {
+    chance: 10.0,
+    tier: ['low', 'low', 'low', 'low', 'low', 'low', 'mid', 'mid', 'high'],
+  },
+  'eeeabsmobs:corpse_warlock': {
+    chance: 10.0,
+    tier: ['mid', 'mid', 'mid', 'high'],
+  },
 };
 
 const allowedEntityFromMod = {
@@ -177,7 +246,7 @@ const ss_TierPowers = [
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.round(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min; // Both minimum and maximum are inclusive
 }
 
 function getRandomPower(tier) {
@@ -199,11 +268,11 @@ function getRandomPower(tier) {
 
   switch (tier) {
     case 'high': {
-      if (chance <= 15) {
+      if (chance <= 45) {
         powers = b_TierPowers;
-      } else if (chance <= 60) {
+      } else if (chance <= 70) {
         powers = a_TierPowers;
-      } else if (chance <= 85) {
+      } else if (chance <= 90) {
         powers = s_TierPowers;
       } else {
         powers = ss_TierPowers;
@@ -212,13 +281,13 @@ function getRandomPower(tier) {
     }
 
     case 'mid': {
-      if (chance <= 15) {
+      if (chance <= 20) {
         powers = c_TierPowers;
-      } else if (chance <= 25) {
+      } else if (chance <= 50) {
         powers = b_TierPowers;
-      } else if (chance <= 35) {
+      } else if (chance <= 75) {
         powers = a_TierPowers;
-      } else if (chance <= 90) {
+      } else if (chance <= 95) {
         powers = s_TierPowers;
       } else {
         powers = ss_TierPowers;
@@ -300,7 +369,7 @@ if (Platform.isLoaded('heroes')) {
       return;
     }
 
-    const entityFound = allowedEntityDico[entity.type];
+    let entityFound = allowedEntityDico[entity.type];
 
     if (!entityFound) {
       let modId = entity.type.split(':');
@@ -308,9 +377,9 @@ if (Platform.isLoaded('heroes')) {
 
       if (modId) {
         entityFound = allowedEntityFromMod[`${modId}:`];
-
-        if (!entityFound) return;
       }
+
+      if (!entityFound) return;
     }
 
     const { chance: applyPowerChance, tier } = entityFound;
@@ -360,6 +429,53 @@ if (Platform.isLoaded('heroes')) {
 
       entity.addTag('Heroes.Enabled');
 
+      // if (
+      //   entity.isLiving &&
+      //   entity.isLiving() &&
+      //   entity.getAttributeValue &&
+      //   entity.setAttributeBaseValue
+      // ) {
+      //   // Apply stat boosts for powered mobs
+      //   const currentHealth = entity.getMaxHealth();
+      //   const currentDamage =
+      //     entity.getAttributeValue('minecraft:generic.attack_damage') || 1;
+      //   const currentSpeed =
+      //     entity.getAttributeValue('minecraft:generic.movement_speed') || 0.25;
+
+      //   // 25% chance for super elite stats
+      //   if (Math.random() < 0.25) {
+      //     entity.setAttributeBaseValue(
+      //       'minecraft:generic.max_health',
+      //       currentHealth * 3.75
+      //     );
+      //     entity.setAttributeBaseValue(
+      //       'minecraft:generic.attack_damage',
+      //       currentDamage * 2.34
+      //     );
+      //     entity.setAttributeBaseValue(
+      //       'minecraft:generic.movement_speed',
+      //       currentSpeed * 1.32
+      //     );
+      //   } else {
+      //     // Base elite stats: 2.5x health, 1.8x damage, 1.2x speed
+      //     entity.setAttributeBaseValue(
+      //       'minecraft:generic.max_health',
+      //       currentHealth * 2.5
+      //     );
+      //     entity.setAttributeBaseValue(
+      //       'minecraft:generic.attack_damage',
+      //       currentDamage * 1.8
+      //     );
+      //     entity.setAttributeBaseValue(
+      //       'minecraft:generic.movement_speed',
+      //       currentSpeed * 1.2
+      //     );
+      //   }
+
+      //   // Heal to full health after stat changes
+      //   entity.heal(entity.getMaxHealth());
+      // }
+
       entity.customName =
         'Powered' +
         (entity.name && entity.name.string ? ` ${entity.name.string}` : '');
@@ -385,6 +501,37 @@ if (Platform.isLoaded('heroes')) {
     );
 
     brain.orCreateTag.merge(`{Powers.${ability}: 1b}`);
+
+    switch (ability) {
+      case 'Ability_Replication': {
+        const slotsCount = getRandomInt(1, 20);
+
+        if (slotsCount <= 15) {
+          slotsCount = 1;
+        } else if (slotsCount <= 17) {
+          slotsCount = 2;
+        } else if (slotsCount === 18) {
+          slotsCount = 3;
+        } else if (slotsCount === 19) {
+          slotsCount = 4;
+        } else {
+          slotsCount = 5;
+        }
+
+        brain.orCreateTag.merge(`{Replication_Slots: ${slotsCount}b}`);
+        break;
+      }
+      case 'Levitation': {
+        const levitationBaseSpeed = getRandomInt(1, 10);
+        brain.orCreateTag.merge(`{Levitation_Speed: ${levitationBaseSpeed}b}`);
+        break;
+      }
+      case 'Bone_Protrusion': {
+        const boneType = getRandomInt(1, 3);
+        brain.orCreateTag.merge(`{Bone_Var: ${boneType}b}`);
+        break;
+      }
+    }
 
     brainBlock.item = brain;
 

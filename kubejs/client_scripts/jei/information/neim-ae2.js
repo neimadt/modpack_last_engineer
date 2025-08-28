@@ -3,7 +3,7 @@ if (Platform.isLoaded('jei')) {
     if (Platform.isLoaded('ae2')) {
       event.addItem('ae2:silicon', [
         'Industrial-grade silicon requires both quartz dust and sand,',
-        'smelted under intense heat in an Arc Furnace.',
+        'smelted under intense heat in an Arc Furnace or an Alloy Smelter.',
       ]);
     }
   });

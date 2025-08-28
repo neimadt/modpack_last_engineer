@@ -1,14 +1,14 @@
 const itemsToBeHidden = [
-  {
-    id: 'integrateddynamics:coal_generator',
-    removeRecipe: true,
-    verify: () => Platform.isLoaded('integrateddynamics'),
-  },
-  {
-    id: 'integrateddynamics:energy_battery',
-    removeRecipe: true,
-    verify: () => Platform.isLoaded('integrateddynamics'),
-  },
+  // {
+  //   id: 'integrateddynamics:coal_generator',
+  //   removeRecipe: true,
+  //   verify: () => Platform.isLoaded('integrateddynamics'),
+  // },
+  // {
+  //   id: 'integrateddynamics:energy_battery',
+  //   removeRecipe: true,
+  //   verify: () => Platform.isLoaded('integrateddynamics'),
+  // },
   {
     id: 'create_sa:brass_jetpack_chestplate',
     removeRecipe: true,
@@ -93,6 +93,11 @@ const itemsToBeHidden = [
     id: 'ironfurnaces:augment_generator',
     removeRecipe: true,
     verify: () => Platform.isLoaded('ironfurnaces'),
+  },
+  {
+    id: 'aeinfinitybooster:dimension_card',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('aeinfinitybooster'),
   },
 ];
 

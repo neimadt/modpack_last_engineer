@@ -94,7 +94,7 @@ ServerEvents.recipes((event) => {
           S: 'create:iron_sheet',
           V: 'bloodmagic:reagentvoid',
           P: 'occultism:demons_dream_essence',
-          E: 'ae2:calculation_processor',
+          E: 'ae2:silicon',
           B: 'integrateddynamics:variable_transformer_input',
         }
       )
@@ -109,7 +109,7 @@ ServerEvents.recipes((event) => {
           S: 'create:iron_sheet',
           V: 'bloodmagic:reagentvoid',
           P: 'occultism:demons_dream_essence',
-          E: 'ae2:calculation_processor',
+          E: 'ae2:silicon',
           B: 'integrateddynamics:variable_transformer_input',
           R: 'minecraft:shears',
         }
@@ -125,11 +125,39 @@ ServerEvents.recipes((event) => {
           S: 'create:iron_sheet',
           V: 'bloodmagic:reagentvoid',
           P: 'occultism:demons_dream_essence',
-          E: 'ae2:calculation_processor',
+          E: 'ae2:silicon',
           B: 'integrateddynamics:variable',
           R: '#forge:ender_pearls',
         }
       )
       .id('last_engineer:buildinggadgets/gadget_destruction');
+  }
+
+  if (Platform.isLoaded('charginggadgets')) {
+    event.remove({ output: 'charginggadgets:charging_station' });
+    event
+      .custom({
+        type: 'minecraft:crafting_shaped',
+        category: 'redstone',
+        key: {
+          d: {
+            item: 'ae2:silicon',
+          },
+          i: {
+            tag: 'forge:ingots/iron',
+          },
+          l: {
+            item: 'bloodmagic:reagentlava',
+          },
+          r: {
+            tag: 'forge:dusts/redstone',
+          },
+        },
+        pattern: ['iri', 'drd', 'ili'],
+        result: {
+          item: 'charginggadgets:charging_station',
+        },
+      })
+      .id('last_engineer:charginggadgets/charging_station');
   }
 });

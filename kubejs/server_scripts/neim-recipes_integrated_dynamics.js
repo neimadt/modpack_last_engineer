@@ -1,7 +1,7 @@
 ServerEvents.recipes((event) => {
   if (!Platform.isLoaded('integrateddynamics')) return;
 
-  event.remove({ output: 'integrateddynamics:mechanical_squeezer' });
+  // event.remove({ output: 'integrateddynamics:mechanical_squeezer' });
   event
     .shaped(
       Item.of('integrateddynamics:mechanical_squeezer', 1),
@@ -15,7 +15,7 @@ ServerEvents.recipes((event) => {
     )
     .id('last_engineer:integrateddynamics/mechanical_squeezer');
 
-  event.remove({ output: 'integrateddynamics:mechanical_drying_basin' });
+  // event.remove({ output: 'integrateddynamics:mechanical_drying_basin' });
   event
     .shaped(
       Item.of('integrateddynamics:mechanical_drying_basin', 1),
@@ -28,7 +28,7 @@ ServerEvents.recipes((event) => {
     )
     .id('last_engineer:integrateddynamics/mechanical_drying_basin');
 
-  event.remove({ output: 'integratedtunnels:part_interface_energy' });
+  // event.remove({ output: 'integratedtunnels:part_interface_energy' });
   event
     .shaped(
       Item.of('integratedtunnels:part_interface_energy', 4),

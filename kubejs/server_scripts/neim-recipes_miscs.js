@@ -1,10 +1,16 @@
 ServerEvents.recipes((event) => {
   event
     .smelting('minecraft:iron_nugget', 'minecraft:iron_bars')
-    .id('last_engineer:iron_nugget_to_iron_bars');
+    .id('last_engineer:iron_nugget_to_iron_bars_smelting');
+  event
+    .blasting('minecraft:iron_nugget', 'minecraft:iron_bars')
+    .id('last_engineer:iron_nugget_to_iron_bars_blasting');
   event
     .smelting('minecraft:iron_nugget', 'minecraft:chain')
-    .id('last_engineer:iron_nugget_to_chain');
+    .id('last_engineer:iron_nugget_to_chain_smelting');
+  event
+    .blasting('minecraft:iron_nugget', 'minecraft:chain')
+    .id('last_engineer:iron_nugget_to_chain_blasting');
 
   event.remove({ output: 'minecraft:furnace' });
   event
@@ -67,6 +73,7 @@ ServerEvents.recipes((event) => {
     ])
     .id('last_engineer:paper_from_bamboo');
 
+  event.remove({ output: 'minecraft:saddle' });
   event
     .shaped(Item.of('minecraft:saddle', 1), [' L ', 'LIL', 'N N'], {
       L: 'minecraft:leather',

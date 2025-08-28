@@ -1,28 +1,6 @@
 ServerEvents.recipes((event) => {
   if (!Platform.isLoaded('mekanism')) return;
 
-  event.remove({ output: 'mekanism:metallurgic_infuser' });
-  event
-    .shaped('mekanism:metallurgic_infuser', ['BFP', 'COC', 'PFB'], {
-      B: 'create:brass_sheet',
-      P: 'pneumaticcraft:ingot_iron_compressed',
-      C: 'bloodmagic:reagentbinding',
-      O: 'mekanism:ingot_osmium',
-      F: 'minecraft:furnace',
-    })
-    .id('kubejs:mekanism/metallurgic_infuser');
-
-  event.remove({ output: 'mekanism:crusher' });
-  event
-    .shaped('mekanism:crusher', ['IBS', 'LCL', 'SBI'], {
-      I: 'occultism:spirit_attuned_gem',
-      B: 'mekanism:basic_control_circuit',
-      C: 'mekanism:steel_casing',
-      S: 'create:brass_sheet',
-      L: 'bloodmagic:reagentlava',
-    })
-    .id('kubejs:mekanism/crusher');
-
   event
     .custom({
       type: 'mekanism:metallurgic_infusing',
@@ -41,66 +19,116 @@ ServerEvents.recipes((event) => {
     })
     .id('mekanism:metallurgic_infusing/alloy/infused');
 
+  event.remove({ output: 'mekanism:metallurgic_infuser' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      key: {
+        F: { item: 'minecraft:furnace' },
+        I: { tag: 'forge:ingots/iron' },
+        O: { tag: 'forge:ingots/osmium' },
+        R: { tag: 'forge:dusts/redstone' },
+        C: { item: 'bloodmagic:reagentgrowth' },
+      },
+      pattern: ['IFI', 'ROR', 'ICI'],
+      result: { item: 'mekanism:metallurgic_infuser' },
+    })
+    .id('last_engineer:mekanism/metallurgic_infuser');
+
+  event.remove({ output: 'mekanism:crusher' });
+  event
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      key: {
+        B: { item: 'bloodmagic:reagentlava' },
+        C: { tag: 'forge:circuits/basic' },
+        R: { tag: 'forge:dusts/redstone' },
+        X: { item: 'mekanism:steel_casing' },
+      },
+      pattern: ['RCR', 'BXB', 'RCR'],
+      result: { item: 'mekanism:crusher' },
+    })
+    .id('last_engineer:mekanism/crusher');
+
   event.remove({ output: 'mekanism:enrichment_chamber' });
   event
-    .shaped('mekanism:enrichment_chamber', ['TGP', 'CBC', 'PAT'], {
-      C: 'mekanism:basic_control_circuit',
-      G: 'occultism:otherworld_sapling',
-      A: 'create:andesite_alloy',
-      P: 'pneumaticcraft:capacitor',
-      T: 'theurgy:alchemical_sulfur_iron',
-      B: 'mekanism:steel_casing',
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      key: {
+        A: { tag: 'mekanism:alloys/basic' },
+        C: { tag: 'forge:circuits/basic' },
+        I: { item: 'ars_nouveau:source_gem_block' },
+        X: { item: 'mekanism:steel_casing' },
+      },
+      pattern: ['ACA', 'IXI', 'ACA'],
+      result: { item: 'mekanism:enrichment_chamber' },
     })
-    .id('kubejs:mekanism/enrichment_chamber');
+    .id('last_engineer:mekanism/enrichment_chamber');
 
   event.remove({ output: 'mekanism:electrolytic_separator' });
   event
-    .shaped('mekanism:electrolytic_separator', ['CWC', 'ESE', 'PRP'], {
-      W: 'bloodmagic:reagentwater',
-      R: 'bloodmagic:reagentbinding',
-      C: 'mekanism:basic_control_circuit',
-      E: 'create:electron_tube',
-      S: 'mekanism:steel_casing',
-      P: 'powah:dielectric_paste',
+    .custom({
+      type: 'minecraft:crafting_shaped',
+      key: {
+        C: { item: 'mekanism:electrolytic_core' },
+        A: { tag: 'mekanism:alloys/infused' },
+        I: { tag: 'forge:ingots/iron' },
+        R: { item: 'bloodmagic:reagentvoid' },
+        W: { item: 'bloodmagic:reagentwater' },
+      },
+      pattern: ['IRI', 'ACA', 'IWI'],
+      result: { item: 'mekanism:electrolytic_separator' },
     })
-    .id('kubejs:mekanism/electrolytic_separator');
+    .id('last_engineer:mekanism/electrolytic_separator');
 
   event.remove({ output: 'mekanism:basic_energy_cube' });
   event
-    .shaped('mekanism:basic_energy_cube', ['QCQ', 'BSB', 'QGQ'], {
-      Q: 'ae2:charged_certus_quartz_crystal',
-      C: 'mekanism:basic_control_circuit',
-      B: 'bloodmagic:reagentmagnetism',
-      G: 'occultism:spirit_attuned_gem',
-      S: 'mekanism:steel_casing',
+    .custom({
+      type: 'mekanism:mek_data',
+      key: {
+        A: { tag: 'mekanism:alloys/basic' },
+        E: { item: 'mekanism:energy_tablet' },
+        I: { item: 'ae2:charged_certus_quartz_crystal' },
+        P: { item: 'mekanism:steel_casing' },
+      },
+      pattern: ['AEA', 'IPI', 'AEA'],
+      result: { item: 'mekanism:basic_energy_cube' },
     })
-    .id('kubejs:mekanism/basic_energy_cube');
+    .id('last_engineer:mekanism/basic_energy_cube');
+
+  event.remove({ output: 'mekanism:advanced_energy_cube' });
 
   event.remove({ output: 'mekanism:digital_miner' });
   event
-    .shaped('mekanism:digital_miner', ['ESE', 'ICD', 'GUG'], {
-      E: 'mekanism:teleportation_core',
-      S: 'occultism:dimensional_matrix',
-      I: 'bloodmagic:reagentsight',
-      C: 'mekanism:robit',
-      D: 'bloodmagic:reagentteleposition',
-      U: 'mekanism:ultimate_control_circuit',
-      G: 'ae2:charged_certus_quartz_crystal',
-    })
-    .id('kubejs:mekanism/digital_miner');
-
-  event
     .custom({
-      type: 'occultism:crushing',
-      crushing_time: 200,
-      ignore_crushing_multiplier: false,
-      ingredient: {
-        item: 'minecraft:charcoal',
+      type: 'mekanism:mek_data',
+      key: {
+        A: { tag: 'mekanism:alloys/atomic' },
+        C: { item: 'bloodmagic:reagentmagnetism' },
+        R: { item: 'mekanism:robit' },
+        S: { item: 'mekanism:logistical_sorter' },
+        T: { item: 'mekanism:teleportation_core' },
+        X: { item: 'mekanism:steel_casing' },
       },
-      result: {
-        count: 4,
-        item: 'mekanism:dust_charcoal',
-      },
+      pattern: ['ACA', 'SRS', 'TXT'],
+      result: { item: 'mekanism:digital_miner' },
     })
-    .id('occultism:kubejs/dust_charcoal');
+    .id('last_engineer:mekanism/digital_miner');
+
+  if (Platform.isLoaded('occultism')) {
+    event
+      .custom({
+        type: 'occultism:crushing',
+        crushing_time: 200,
+        ignore_crushing_multiplier: false,
+        ingredient: {
+          item: 'minecraft:charcoal',
+        },
+        result: {
+          count: 4,
+          item: 'mekanism:dust_charcoal',
+        },
+      })
+      .id('last_engineer:occultism/dust_charcoal');
+  }
 });

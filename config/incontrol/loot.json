@@ -60,11 +60,50 @@
         "remove": "minecraft:stone_pickaxe"
     },
     {
-        "mob": "majruszsdifficulty:cursed_armor",
-        "remove": "minecraft:stone_axe"
+        "mob": [
+            "minecraft:zombie",
+            "minecraft:skeleton"
+        ],
+        "phase": "days_1_to_3",
+        "player": true,
+        "random": 0.3,
+        "item": "minecraft:iron_ingot",
+        "itemcount": "1-2"
     },
     {
-        "mob": "majruszsdifficulty:cursed_armor",
-        "remove": "minecraft:stone_sword"
+        "mob": [
+            "minecraft:zombie",
+            "minecraft:skeleton",
+            "minecraft:spider"
+        ],
+        "phase": "days_4_to_6",
+        "player": true,
+        "random": 0.2,
+        "item": "minecraft:redstone",
+        "itemcount": "2-4"
+    },
+    {
+        "mob": [
+            "minecraft:zombie",
+            "minecraft:skeleton",
+            "minecraft:creeper"
+        ],
+        "phase": "days_7_to_9",
+        "player": true,
+        "random": 0.15,
+        "item": "minecraft:diamond",
+        "itemcount": "1-2"
+    },
+    {
+        "mob": [
+            "minecraft:zombie",
+            "minecraft:skeleton",
+            "minecraft:witch"
+        ],
+        "phase": "days_10_to_infinity",
+        "player": true,
+        "random": 0.1,
+        "item": "minecraft:netherite_scrap",
+        "itemcount": "1"
     }
 ]

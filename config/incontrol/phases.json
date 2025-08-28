@@ -19,5 +19,11 @@
             "mindaycount": 7,
             "maxdaycount": 9
         }
+    },
+    {
+        "name": "days_10_to_infinity",
+        "conditions": {
+            "mindaycount": 10
+        }
     }
 ]
