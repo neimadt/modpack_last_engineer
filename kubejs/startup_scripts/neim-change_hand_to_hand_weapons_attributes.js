@@ -43,26 +43,6 @@ let itemsToAddAttribModifier = {
       'ADDITION'
     ),
   },
-  // 'rustic_engineer:rustic_glider_chestplate': {
-  //   attribute: 'minecraft:generic.armor',
-  //   slots: ['chest'],
-  //   modifier: new $AttributeModifier(
-  //     '622e272d-64c0-4582-a5da-a356e5277b48',
-  //     'generic.armor',
-  //     0,
-  //     'ADDITION'
-  //   ),
-  // },
-  // 'rustic_engineer:rustic_glider_speed_chestplate': {
-  //   attribute: 'minecraft:generic.armor',
-  //   slots: ['chest'],
-  //   modifier: new $AttributeModifier(
-  //     '622e272d-64c0-4582-a5da-a356e5277b48',
-  //     'generic.armor',
-  //     0,
-  //     'ADDITION'
-  //   ),
-  // },
 };
 
 ForgeEvents.onEvent(

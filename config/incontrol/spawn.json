@@ -187,7 +187,7 @@
     },
     {
         "mob": "crittersandcompanions:otter",
-        "mincount": 15,
+        "mincount": 12,
         "result": "deny"
     },
     {
@@ -214,7 +214,22 @@
             "minecraft:witch"
         ],
         "hostile": true,
+        "seesky": true,
         "random": 0.6,
+        "result": "deny"
+    },
+    {
+        "mob": [
+            "minecraft:zombie",
+            "minecraft:creeper",
+            "minecraft:skeleton",
+            "minecraft:spider",
+            "minecraft:bat",
+            "minecraft:witch"
+        ],
+        "hostile": true,
+        "seesky": false,
+        "random": 0.75,
         "result": "deny"
     },
     {
@@ -230,27 +245,74 @@
             "minecraft:piglin",
             "minecraft:piglin_brute",
             "minecraft:zombified_piglin",
-            "minecraft:hoglin"
+            "minecraft:hoglin",
+            "alexsmobs:straddler"
         ],
         "hostile": true,
         "random": 0.45,
         "result": "deny"
     },
     {
+        "mod": [
+            "mythsandlegends",
+            "species",
+            "caverns_and_chasms",
+            "luminous_world",
+            "resource_ghouls"
+        ],
+        "seesky": true,
+        "hostile": true,
+        "random": 0.55,
+        "result": "deny"
+    },
+    {
+        "mod": [
+            "mythsandlegends",
+            "species",
+            "caverns_and_chasms",
+            "luminous_world",
+            "resource_ghouls"
+        ],
+        "seesky": false,
+        "hostile": true,
+        "random": 0.7,
+        "result": "deny"
+    },
+    {
+        "mod": [
+            "luminous_nether"
+        ],
+        "hostile": true,
+        "random": 0.40,
+        "result": "deny"
+    },
+    {
         "mod": "thalassophobia",
-        "when": "position",
-        "result": "deny",
-        "random": 0.4
+        "hostile": true,
+        "random": 0.4,
+        "result": "deny"
     },
     {
         "mob": [
             "minecraft:zombie",
             "minecraft:zombie_villager"
         ],
+        "seesky": true,
         "when": "position",
         "result": "allow",
         "healthmultiply": 1.55,
         "damagemultiply": 1.05
+    },
+    {
+        "mob": [
+            "minecraft:zombie",
+            "minecraft:zombie_villager"
+        ],
+        "seesky": false,
+        "when": "position",
+        "result": "allow",
+        "healthmultiply": 1.65,
+        "damagemultiply": 1.1
     },
     {
         "mob": [
@@ -269,26 +331,80 @@
         ],
         "when": "position",
         "result": "allow",
-        "healthmultiply": 1.2,
-        "damagemultiply": 1.2
-    },
-    {
-        "mob": [
-            "minecraft:piglin_brute"
-        ],
-        "when": "position",
-        "result": "allow",
         "healthmultiply": 1.4,
         "damagemultiply": 1.15
     },
     {
         "mob": [
-            "minecraft:skeleton",
             "minecraft:wither_skeleton"
         ],
         "when": "position",
         "result": "allow",
         "healthmultiply": 0.9,
         "damagemultiply": 1.25
+    },
+    {
+        "mob": [
+            "minecraft:skeleton"
+        ],
+        "seesky": true,
+        "when": "position",
+        "result": "allow",
+        "healthmultiply": 0.9,
+        "damagemultiply": 1.25
+    },
+    {
+        "mob": [
+            "minecraft:skeleton"
+        ],
+        "seesky": false,
+        "when": "position",
+        "result": "allow",
+        "healthmultiply": 0.8,
+        "damagemultiply": 1.35
+    },
+    {
+        "mod": [
+            "mythsandlegends",
+            "species",
+            "caverns_and_chasms",
+            "luminous_world",
+            "resource_ghouls"
+        ],
+        "hostile": true,
+        "seesky": true,
+        "when": "position",
+        "result": "allow",
+        "healthmultiply": 1.15,
+        "damagemultiply": 1.02
+    },
+    {
+        "mod": [
+            "mythsandlegends",
+            "species",
+            "caverns_and_chasms",
+            "luminous_world",
+            "resource_ghouls"
+        ],
+        "hostile": true,
+        "seesky": false,
+        "when": "position",
+        "result": "allow",
+        "healthmultiply": 1.2,
+        "damagemultiply": 1.08
+    },
+    {
+        "mod": [
+            "luminous_nether"
+        ],
+        "when": "position",
+        "result": "allow",
+        "healthmultiply": 1.2,
+        "damagemultiply": 1.08
+    },
+    {
+        "mod": "the_ravenous",
+        "phase": "beforeday15",
+        "result": "deny"
     }
 ]

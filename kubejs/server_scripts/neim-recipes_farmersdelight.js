@@ -150,6 +150,73 @@ ServerEvents.recipes((event) => {
           ],
         })
         .id('last_engineer:aquaculture/cutting/fish_fillet_raw_from_cod_slice');
+
+      if (Platform.isLoaded('upgrade_aquatic')) {
+        event
+          .shapeless(Item.of('aquaculture:fish_fillet_raw', 1), [
+            'upgrade_aquatic:perch',
+            '#forge:tools/knives',
+          ])
+          .id(
+            'last_engineer:upgrade_aquatic/shapeless/fish_fillet_raw_from_perch'
+          )
+          .keepIngredient('#forge:tools/knives');
+
+        event
+          .custom({
+            type: 'farmersdelight:cutting',
+            ingredients: [{ item: 'upgrade_aquatic:perch' }],
+            tool: {
+              tag: 'forge:tools/knives',
+            },
+            result: [
+              {
+                item: 'aquaculture:fish_fillet_raw',
+                count: 1,
+              },
+              {
+                item: 'minecraft:bone_meal',
+              },
+              {
+                chance: 0.05,
+                item: 'aquaculture:fish_bones',
+              },
+            ],
+          })
+          .id(
+            'last_engineer:upgrade_aquatic/cutting/fish_fillet_raw_from_perch'
+          );
+      }
+
+      if (Platform.isLoaded('alexsmobs')) {
+        event
+          .shapeless(Item.of('aquaculture:fish_fillet_raw', 2), [
+            'alexsmobs:raw_catfish',
+            '#forge:tools/knives',
+          ])
+          .id(
+            'last_engineer:alexsmobs/shapeless/fish_fillet_raw_from_raw_catfish'
+          )
+          .keepIngredient('#forge:tools/knives');
+
+        event
+          .custom({
+            type: 'farmersdelight:cutting',
+            ingredients: [{ item: 'alexsmobs:raw_catfish' }],
+            tool: {
+              tag: 'forge:tools/knives',
+            },
+            result: [
+              {
+                item: 'aquaculture:fish_fillet_raw',
+                count: 2,
+              },
+            ],
+          })
+          .id(
+            'last_engineer:alexsmobs/cutting/fish_fillet_raw_from_raw_catfish'
+          );
+      }
     }
   } else {
     event

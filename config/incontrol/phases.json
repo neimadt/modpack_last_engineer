@@ -25,5 +25,11 @@
         "conditions": {
             "mindaycount": 10
         }
+    },
+    {
+        "name": "beforeday15",
+        "conditions": {
+            "maxdaycount": 15
+        }
     }
 ]

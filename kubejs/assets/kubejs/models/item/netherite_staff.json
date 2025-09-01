@@ -1,0 +1,83 @@
+{
+	"loader": "forge:separate_transforms",
+	"base": {
+		"loader": "forge:obj",
+		"model": "kubejs:models/item/obj/staff.obj",
+		"flip-v": true,
+		"mtl_override": "netherite_staff.mtl",
+		"display": {
+			"head": {
+				"rotation": [
+					-90,
+					140,
+					100
+				],
+				"translation": [
+					12,
+					9,
+					3.8
+				],
+				"scale": [
+					0.6,
+					0.6,
+					0.6
+				]
+			},
+			"thirdperson_righthand": {
+				"translation": [
+					4,
+					-7.25,
+					6.8
+				],
+				"rotation": [
+					86,
+					0,
+					0
+				],
+				"scale": [
+					0.63,
+					0.63,
+					0.63
+				]
+			},
+			"firstperson_righthand": {
+				"translation": [
+					30,
+					-14,
+					-5
+				],
+				"rotation": [
+					75,
+					0,
+					0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			}
+		}
+	},
+	"perspectives": {
+		"ground": {
+			"parent": "item/generated",
+			"textures": {
+				"layer0": "kubejs:item/netherite_staff"
+			}
+		},
+		"gui": {
+			"parent": "item/generated",
+			"textures": {
+				"layer0": "kubejs:item/netherite_staff"
+			},
+			"gui_light": "front"
+		},
+		"fixed": {
+			"parent": "item/generated",
+			"textures": {
+				"layer0": "kubejs:item/netherite_staff"
+			}
+		}
+	}
+}

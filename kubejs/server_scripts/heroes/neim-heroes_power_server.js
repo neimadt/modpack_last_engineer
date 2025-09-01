@@ -326,7 +326,8 @@ function getRandomPower(tier) {
 
   // Return a random power from the selected tier (if available)
   if (powers && powers.length > 0) {
-    const abilityIndex = Math.floor(Math.random() * powers.length);
+    // const abilityIndex = Math.floor(Math.random() * powers.length);
+    const abilityIndex = getRandomInt(0, powers.length - 1);
     return powers[abilityIndex];
   }
 

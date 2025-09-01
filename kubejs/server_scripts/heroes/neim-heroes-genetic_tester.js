@@ -28,5 +28,95 @@ if (Platform.isLoaded('heroes')) {
       player.tell('Stockpile Energy: ' + result + '');
       // player.tell(`Your Stamina Max: ${result}`);
     }
+
+    command =
+      'scoreboard players get ' +
+      playerName +
+      ' Heroes.Ocular_Psychogenesis_Emission.Stage';
+    // Run the command and capture the output
+    const ocularEmissionStage = event.server.runCommandSilent(command);
+
+    if (ocularEmissionStage > 0) {
+      command =
+        'scoreboard players get ' +
+        playerName +
+        ' Heroes.Ocular_Psychogenesis_Emission.Used.Timer';
+
+      player.tell('Ocular Psychogenesis Stage: ' + ocularEmissionStage + '');
+
+      const ocularControlUsedTimer =
+        event.server.runCommandSilent(command) || 0;
+
+      switch (ocularEmissionStage) {
+        case 1: {
+          const untilNextStage = 6200 - ocularControlUsedTimer;
+          player.tell(
+            'Ocular Psychogenesis Emission Stage: 1, ' +
+              untilNextStage +
+              ' ticks until next stage'
+          );
+          break;
+        }
+        case 2: {
+          const untilNextStage = 20200 - ocularControlUsedTimer;
+          player.tell(
+            'Ocular Psychogenesis Emission Stage: 2, ' +
+              untilNextStage +
+              ' ticks until next stage'
+          );
+          break;
+        }
+        case 3: {
+          player.tell('Ocular Psychogenesis Emission Final Stage 3 reached');
+          break;
+        }
+      }
+    }
+
+    command =
+      'scoreboard players get ' +
+      playerName +
+      ' Heroes.Ocular_Psychogenesis_Control.Stage';
+
+    const ocularControlStage = event.server.runCommandSilent(command);
+
+    if (ocularControlStage > 0) {
+      command =
+        'scoreboard players get ' +
+        playerName +
+        ' Heroes.Ocular_Psychogenesis_Control.Used.Timer';
+
+      player.tell(
+        'Ocular Psychogenesis Control Stage: ' + ocularControlStage + ''
+      );
+
+      const ocularControlUsedTimer =
+        event.server.runCommandSilent(command) || 0;
+
+      switch (ocularControlStage) {
+        case 1: {
+          const untilNextStage = 6200 - ocularControlUsedTimer;
+          player.tell(
+            'Ocular Psychogenesis Control Stage: 1, ' +
+              untilNextStage +
+              ' ticks until next stage'
+          );
+          break;
+        }
+        case 2: {
+          const untilNextStage = 20200 - ocularControlUsedTimer;
+          player.tell(
+            'Ocular Psychogenesis Control Stage: 2, ' +
+              untilNextStage +
+              ' ticks until next stage'
+          );
+          break;
+        }
+        case 3: {
+          player.tell('Ocular Psychogenesis Control Final Stage 3 reached');
+          break;
+        }
+      }
+    }
   });
 }

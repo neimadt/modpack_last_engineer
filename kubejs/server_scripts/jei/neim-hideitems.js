@@ -10,6 +10,16 @@ const itemsToBeHidden = [
   //   verify: () => Platform.isLoaded('integrateddynamics'),
   // },
   {
+    id: 'pylons:potion_filter',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('pylons'),
+  },
+  {
+    id: 'pylons:infusion_pylon',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('pylons'),
+  },
+  {
     id: 'create_sa:brass_jetpack_chestplate',
     removeRecipe: true,
     verify: () => Platform.isLoaded('create_sa'),

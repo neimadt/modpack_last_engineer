@@ -21,6 +21,13 @@ ServerEvents.recipes((event) => {
     .id('last_engineer:furnace');
 
   event
+    .smelting('minecraft:redstone', 'regions_unexplored:pointed_redstone')
+    .id('last_engineer:redstone_to_pointed_redstone_smelting');
+  event
+    .blasting('minecraft:redstone', 'regions_unexplored:pointed_redstone')
+    .id('last_engineer:redstone_to_pointed_redstone_blasting');
+
+  event
     .shaped(
       Item.of('minecraft:enchanted_golden_apple', 1),
       ['GGG', 'GAG', 'GGG'],
