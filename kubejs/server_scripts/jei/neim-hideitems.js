@@ -10,6 +10,16 @@ const itemsToBeHidden = [
   //   verify: () => Platform.isLoaded('integrateddynamics'),
   // },
   {
+    id: 'mob_grinding_utils:nutricious_chicken_feed',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('mob_grinding_utils'),
+  },
+  {
+    id: 'mob_grinding_utils:gm_chicken_feed_cursed',
+    removeRecipe: true,
+    verify: () => Platform.isLoaded('mob_grinding_utils'),
+  },
+  {
     id: 'pylons:potion_filter',
     removeRecipe: true,
     verify: () => Platform.isLoaded('pylons'),

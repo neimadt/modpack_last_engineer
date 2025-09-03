@@ -20,12 +20,14 @@ ServerEvents.recipes((event) => {
     })
     .id('last_engineer:furnace');
 
-  event
-    .smelting('minecraft:redstone', 'regions_unexplored:pointed_redstone')
-    .id('last_engineer:redstone_to_pointed_redstone_smelting');
-  event
-    .blasting('minecraft:redstone', 'regions_unexplored:pointed_redstone')
-    .id('last_engineer:redstone_to_pointed_redstone_blasting');
+  if (Platform.isLoaded('regions_unexplored')) {
+    event
+      .smelting('minecraft:redstone', 'regions_unexplored:pointed_redstone')
+      .id('last_engineer:redstone_to_pointed_redstone_smelting');
+    event
+      .blasting('minecraft:redstone', 'regions_unexplored:pointed_redstone')
+      .id('last_engineer:redstone_to_pointed_redstone_blasting');
+  }
 
   event
     .shaped(

@@ -3,7 +3,7 @@ StartupEvents.registry('item', (event) => {
     .create(`kubejs:iron_staff`, 'sword')
     .parentModel('kubejs:item/iron_staff')
     .texture('kubejs:item/iron_staff')
-    .speedBaseline(-2.6)
+    .speedBaseline(-2.3)
     .attackDamageBaseline(4.5)
     .maxDamage(244);
 
@@ -11,7 +11,7 @@ StartupEvents.registry('item', (event) => {
     .create(`kubejs:golden_staff`, 'sword')
     .parentModel('kubejs:item/golden_staff')
     .texture('kubejs:item/golden_staff')
-    .speedBaseline(-2.6)
+    .speedBaseline(-2.3)
     .attackDamageBaseline(4.6)
     .maxDamage(61);
 
@@ -19,7 +19,7 @@ StartupEvents.registry('item', (event) => {
     .create(`kubejs:osmium_staff`, 'sword')
     .parentModel('kubejs:item/osmium_staff')
     .texture('kubejs:item/osmium_staff')
-    .speedBaseline(-2.6)
+    .speedBaseline(-2.3)
     .attackDamageBaseline(5.3)
     .maxDamage(1022);
 
@@ -27,7 +27,7 @@ StartupEvents.registry('item', (event) => {
     .create(`kubejs:diamond_staff`, 'sword')
     .parentModel('kubejs:item/diamond_staff')
     .texture('kubejs:item/diamond_staff')
-    .speedBaseline(-2.6)
+    .speedBaseline(-2.3)
     .attackDamageBaseline(5.5)
     .maxDamage(1555);
 
@@ -35,7 +35,7 @@ StartupEvents.registry('item', (event) => {
     .create(`kubejs:netherite_staff`, 'sword')
     .parentModel('kubejs:item/netherite_staff')
     .texture('kubejs:item/netherite_staff')
-    .speedBaseline(-2.6)
+    .speedBaseline(-2.3)
     .attackDamageBaseline(6.5)
     .maxDamage(2025);
 });

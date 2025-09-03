@@ -1,4 +1,7 @@
 ServerEvents.tags('item', (event) => {
+  if (Platform.isLoaded('resource_ghouls')) {
+    event.add('forge:armor', 'resource_ghouls:broken_miners_helmet_helmet');
+  }
   if (Platform.isLoaded('forbidden_arcanus')) {
     event.add('forge:planks', 'forbidden_arcanus:aurum_planks');
   }

@@ -8,6 +8,9 @@
     },
     {
       "path": "config/paxi"
+    },
+    {
+      "path": "config/incontrol"
     }
   ],
   "settings": {}

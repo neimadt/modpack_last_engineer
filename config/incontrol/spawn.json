@@ -1,5 +1,14 @@
 [
     {
+        "mob": [
+            "creeperoverhaul:ocean_creeper",
+            "species:limpet",
+            "mowziesmobs:grottol"
+        ],
+        "when": "onjoin",
+        "result": "deny"
+    },
+    {
         "biome": "terralith:haze_mountain",
         "hostile": true,
         "result": "deny"
@@ -9,11 +18,6 @@
         "mob": "upgrade_aquatic:thrasher",
         "when": "position",
         "mincount": 8,
-        "result": "deny"
-    },
-    {
-        "mob": "creeperoverhaul:ocean_creeper",
-        "when": "onjoin",
         "result": "deny"
     },
     {
